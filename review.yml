@@ -1,0 +1,489 @@
+aid: offerpad
+name: Offerpad
+reviewed: '2026-07-26'
+reviewer:
+  fn: Kin Lane
+  email: kin@apievangelist.com
+  url: https://apievangelist.com
+homeMarket: United States
+tier: ibuyer
+status: built-stub
+statusReason: >-
+  Identity captured and every plausible developer surface probed. Offerpad
+  publishes no developer portal, no API documentation, no SDK, no webhooks and
+  no machine-readable contract for any real estate capability. The single
+  publicly callable, self-describing API found on any Offerpad host is the
+  stock WordPress REST API of the WP Engine-hosted marketing site, which is a
+  CMS surface rather than a real estate developer surface.
+
+summary: >-
+  Offerpad Solutions Inc. (NYSE: OPAD) is a US iBuyer and licensed residential
+  brokerage operating in seventeen states. It buys homes for cash, renovates
+  and resells them, lists homes as a brokerage, runs a Renovate service, and
+  operates four human partner programs — the Agent Partnership Program /
+  Powered By Offerpad, the Direct+ investor-buyer program, homebuilder
+  services, and a renovation vendor network. All four are web forms and
+  login-gated portals with no programmatic interface. Offerpad announced two
+  internal AI platforms, SCOUT (seller intake and routing) and HENRY
+  (portfolio intelligence with computer-vision renovation estimating), on
+  2026-03-18; both are explicitly internal systems with no external API,
+  developer program, or data-integration story.
+
+# ---------------------------------------------------------------------------
+# THE POINT OF THE EXERCISE: certification is not reachability
+# ---------------------------------------------------------------------------
+sectorPosture:
+  homeMarket: United States
+
+  resoPosture:
+    verbatim: >-
+      No RESO reference of any kind exists on Offerpad's public surfaces, and
+      Offerpad does not appear in the RESO certification directory. Offerpad
+      holds no RESO Web API certification and no RESO Data Dictionary
+      certification at any version. It serves no OData service document, no
+      $metadata CSDL document, and makes no reference to the RESO Universal
+      Property Identifier (UPI). Offerpad is a CONSUMER of MLS data as a
+      licensed MLS-participating brokerage, not a certified data PROVIDER, so
+      the RESO mandate that NAR imposes on Multiple Listing Services simply
+      does not attach to it. This is a case where certification is absent
+      rather than a case where certification exists but is unreachable.
+    resoCertified: false
+    webApiCertified: false
+    dataDictionaryCertified: false
+    dataDictionaryVersion: null
+    odataEndpoint: null
+    metadataDocument: null
+    upiSupport: false
+    directoryEvidence:
+      - url: https://www.reso.org/certificates/
+        fetched: '2026-07-26'
+        status: 200
+        bytes: 416233
+        finding: >-
+          Full RESO certificates directory page fetched and grepped
+          case-insensitively. Zero occurrences of "Offerpad". For calibration
+          the same document returned zero occurrences of "Opendoor",
+          "Redfin" and "Compass", and one occurrence of "Zillow" — consistent
+          with a directory of MLSs, pooled platforms, technology companies,
+          commercial providers and a small number of brokerages, in which no
+          iBuyer appears.
+      - url: https://www.reso.org/certification/
+        fetched: '2026-07-26'
+        status: 200
+        finding: >-
+          Confirms the directory of certified organizations lives at
+          https://www.reso.org/certificates/ and that certification is tracked
+          for Web API Core 2.0.0, Data Dictionary 2.0 and RESO Common Format.
+      - url: https://certification.reso.org/
+        fetched: '2026-07-26'
+        status: 400
+        finding: >-
+          RESO's live certification report host returned HTTP 400 to an
+          anonymous root request; the public certificates page was used
+          instead.
+    siteEvidence: >-
+      Case-insensitive searches for "RESO", "OData", "$metadata", "IDX", "VOW",
+      "Data Dictionary" and "UPI" across www.offerpad.com pages fetched during
+      this review (home, /about/, /agents/, /pbo/, /builders/, /hba/,
+      /vendors/, /licenses/, /dplusonboarding/) produced no hits. The
+      /licenses/ page enumerates brokerage entities and states only — no MLS,
+      IDX, VOW or data-licensing language appears on it.
+
+  accessGate:
+    classification: none-published
+    reason: >-
+      There is no published path by which a developer obtains API access to
+      Offerpad — no portal, no key request, no application form, no partner API
+      tier, no contact address for API access. The gate is not "closed", it is
+      "absent". The nearest analogues are business programs, not developer
+      programs.
+    whatADeveloperMustSignOrJoin: >-
+      Nothing, because nothing is on offer. For the adjacent BUSINESS programs:
+      Offerpad Direct+ (the investor-buyer program) requires three steps
+      quoted verbatim from https://www.offerpad.com/dplusonboarding/ — "Create
+      an account in the Offerpad Direct+ portal. Complete and submit the member
+      intake form below. Sign our Mutual Non-Disclosure Agreement." The Agent
+      Partnership Program requires no membership or sign-up fee, but requires
+      a licensed real estate agent or broker to be identified in the offer
+      request; Powered By Offerpad Pro and Max tiers are the portal-bearing
+      levels. Homebuilder services and the vendor network are contact forms
+      only. None of these agreements grants, or even mentions, data or API
+      access.
+    portalsObserved:
+      - url: https://connect.offerpad.com/auth/login
+        status: 200
+        note: >-
+          Offerpad Connect — a login-gated single-page application. This is the
+          live partner/customer portal that portal.offerpad.com redirects to.
+          Registration is not open evaluation; it is tied to the programs above.
+      - url: https://offerpad.direct/start/
+        status: 000
+        note: >-
+          The Direct+ portal link published on /dplusonboarding/ DOES NOT
+          RESOLVE. offerpad.direct has AWS Route 53 nameservers
+          (ns-212.awsdns-26.com and three siblings) but no A record. A dead
+          link on a live onboarding page.
+      - url: https://www.offerpad.pro/start/
+        status: 200 (TLS invalid)
+        note: >-
+          The Powered By Offerpad agent portal URL named in Offerpad's own
+          2024 launch press release now resolves to 103.224.182.211, a domain
+          parking address, and presents an EXPIRED Let's Encrypt certificate
+          issued to CN=strategicts.net (notAfter 2024-09-19). The domain
+          appears to have lapsed out of Offerpad's control. Recorded as an
+          observed fact, not as a working portal.
+      - url: https://direct.offerpad.com/
+        status: 403
+        note: Redirects to https://buy.offerpad.com/investor/landing; blocked to non-browser clients.
+
+  openData:
+    available: false
+    note: >-
+      Offerpad publishes no open dataset. It is a private US market
+      participant; there is no US federal or state counterweight equivalent to
+      HM Land Registry Price Paid or Ordnance Survey open products, and
+      Offerpad publishes nothing under an open licence. The only unlicensed,
+      anonymously fetchable structured data on the domain is its own marketing
+      content (sitemaps, llms.txt, the WordPress REST API).
+
+  authModel:
+    publishedApiAuth: none
+    detail: >-
+      No API authentication scheme is published because no API is published.
+      /.well-known/openid-configuration returns 404 on www.offerpad.com and is
+      swallowed by the SPA catch-all on connect.offerpad.com (HTML, not JSON) —
+      no OpenID Connect discovery document is served anywhere. The Offerpad
+      Connect portal uses a conventional form login at /auth/login with no
+      exposed identity-provider configuration; the login page loads only
+      Iubenda consent, Salesforce Live Agent / Embedded Service, and a local
+      /bundle.js, with no Auth0, Okta, Cognito, Firebase or MSAL markers. The
+      one real auth statement found anywhere is in the WordPress REST API root
+      document, which advertises WordPress application passwords with an
+      authorization endpoint at
+      https://www.offerpad.com/wp-admin/authorize-application.php.
+
+# ---------------------------------------------------------------------------
+# Probes — every URL touched, with HTTP status
+# ---------------------------------------------------------------------------
+probes:
+  date: '2026-07-26'
+  method: >-
+    curl with a desktop Chrome User-Agent, following redirects, plus WebFetch
+    for pages behind bot protection, plus dig for DNS and openssl s_client for
+    TLS.
+  developerSurfaces:
+    - url: https://developer.offerpad.com/
+      status: 000
+      note: DNS does not resolve (NXDOMAIN).
+    - url: https://developers.offerpad.com/
+      status: 000
+      note: DNS does not resolve (NXDOMAIN).
+    - url: https://api.offerpad.com/
+      status: 000
+      note: DNS does not resolve (NXDOMAIN).
+    - url: https://docs.offerpad.com/
+      status: 000
+      note: DNS does not resolve (NXDOMAIN).
+    - url: https://www.offerpad.com/developers
+      status: 404
+    - url: https://www.offerpad.com/api
+      status: 404
+    - url: https://www.offerpad.com/docs
+      status: 404
+    - url: https://www.offerpad.com/openapi.json
+      status: 404
+    - url: https://www.offerpad.com/swagger.json
+      status: 404
+    - url: https://www.offerpad.com/api-docs
+      status: 404
+    - url: https://www.offerpad.com/.well-known/openid-configuration
+      status: 404
+    - url: https://www.offerpad.com/.well-known/security.txt
+      status: 404
+    - url: https://www.offerpad.com/security.txt
+      status: 404
+    - url: https://www.offerpad.com/.well-known/ai-plugin.json
+      status: 404
+  falsePositives:
+    note: >-
+      connect.offerpad.com returns HTTP 200 for EVERY path because it is a
+      single-page application with a catch-all route. /openapi.json,
+      /swagger.json, /swagger/v1/swagger.json, /api-docs, /api,
+      /.well-known/openid-configuration, /robots.txt, /llms.txt and /graphql
+      all returned 200 with content-type text/html and the identical SPA
+      index.html body ("<!doctype html>...<title>Offerpad</title>"). NONE of
+      them is a specification. Recorded explicitly so a later pass does not
+      mistake the 200s for artifacts.
+    paths:
+      - https://connect.offerpad.com/openapi.json
+      - https://connect.offerpad.com/swagger.json
+      - https://connect.offerpad.com/swagger/v1/swagger.json
+      - https://connect.offerpad.com/api-docs
+      - https://connect.offerpad.com/api
+      - https://connect.offerpad.com/.well-known/openid-configuration
+      - https://connect.offerpad.com/robots.txt
+      - https://connect.offerpad.com/graphql
+      - https://connect.offerpad.com/llms.txt
+  hosts:
+    - host: www.offerpad.com
+      status: 200
+      note: WordPress on WP Engine behind Cloudflare (server=cloudflare, x-powered-by=WP Engine).
+    - host: offerpad.com
+      status: 200
+      note: Redirects to https://www.offerpad.com/.
+    - host: connect.offerpad.com
+      status: 200
+      note: Offerpad Connect portal SPA; root redirects into /auth/login.
+    - host: portal.offerpad.com
+      status: 200
+      note: Redirects to https://connect.offerpad.com/auth/login.
+    - host: my.offerpad.com
+      status: 200
+      note: Redirects to https://www.offerpad.com/.
+    - host: direct.offerpad.com
+      status: 403
+      note: Redirects to https://buy.offerpad.com/investor/landing; bot-blocked to curl.
+    - host: buy.offerpad.com
+      status: 403
+      note: Home-search application; bot-blocked to curl.
+    - host: sell.offerpad.com
+      status: 403
+      note: Offer-request application; bot-blocked to curl.
+    - host: blog.offerpad.com
+      status: 200
+      note: Redirects to https://www.offerpad.com/articles/.
+    - host: press.offerpad.com
+      status: 200
+      note: Redirects to https://www.offerpad.com/press/.
+    - host: investor.offerpad.com
+      status: 403
+      note: Q4 Inc. investor-relations site (webfarm-31002.q4web.com); bot-blocked to curl but live via browser.
+    - host: status.offerpad.com
+      status: 000
+      note: DNS does not resolve; no public status page.
+    - host: dplus.offerpad.com
+      status: 000
+      note: DNS does not resolve.
+    - host: agents.offerpad.com
+      status: 000
+      note: DNS does not resolve.
+    - host: partners.offerpad.com
+      status: 000
+      note: DNS does not resolve.
+    - host: app.offerpad.com
+      status: 000
+      note: DNS does not resolve.
+    - host: offerpad.direct
+      status: 000
+      note: >-
+        AWS Route 53 nameservers present, no A record. The Direct+ portal link
+        on /dplusonboarding/ points here and is therefore dead.
+    - host: www.offerpad.pro
+      status: 200 (TLS invalid)
+      note: >-
+        Parked at 103.224.182.211 with an expired Let's Encrypt certificate for
+        CN=strategicts.net (notAfter 2024-09-19). Was the Powered By Offerpad
+        agent portal per Offerpad's 2024 press release.
+
+# ---------------------------------------------------------------------------
+# Artifacts genuinely harvested
+# ---------------------------------------------------------------------------
+artifacts:
+  apis: 1
+  openapi: 0
+  odataMetadata: 0
+  discoveryDocuments: 1
+  asyncapi: 0
+  graphql: 0
+  postman: 0
+  sdks: 0
+  webhooks: 0
+  llmsTxt: 1
+  harvested:
+    - path: openapi/offerpad-wp-json-discovery.json
+      kind: WordPress REST API root discovery document
+      notOpenAPI: true
+      sourceURL: https://www.offerpad.com/wp-json/
+      fetched: '2026-07-26'
+      httpStatus: 200
+      contentType: application/json; charset=UTF-8
+      bytes: 387532
+      parsed: true
+      routes: 411
+      namespaces: 20
+      namespaceList:
+        - oembed/1.0
+        - seo-autopilot/v1
+        - wpe/cache-plugin/v1
+        - wpe_sign_on_plugin/v1
+        - redirection/v1
+        - yoast/v1
+        - wp-all-import/v1
+        - elementor-one/v1
+        - elementor/v1
+        - elementor-pro/v1
+        - genesisblocks/v1
+        - wp-rocket/v1
+        - gf/v2
+        - elementor/v1/documents
+        - elementor-ai/v1
+        - elementor/v1/feedback
+        - wp/v2
+        - wp-site-health/v1
+        - wp-block-editor/v1
+        - wp-abilities/v1
+      authentication: WordPress application passwords
+      caveat: >-
+        This is the marketing CMS, not a real estate API. It is saved because
+        it is a real, fetched, self-describing machine-readable contract and
+        the ONLY publicly callable API found on any Offerpad host. It must
+        never be reported as a property, listing, valuation or transaction API.
+  notHarvested:
+    - kind: OpenAPI
+      reason: None published or discoverable on any Offerpad host.
+    - kind: OData $metadata
+      reason: No OData surface exists; Offerpad is not a RESO data provider.
+    - kind: AsyncAPI / webhooks / events
+      reason: >-
+        No webhook, event, or streaming surface is documented or referenced
+        anywhere on Offerpad's public properties.
+    - kind: SDK / client library
+      reason: >-
+        github.com/Offerpad has 6 public repositories, none of which is an
+        Offerpad SDK — floorplan (an internal CSS pattern library) plus five
+        forks or mirrors of third-party infrastructure projects
+        (virtual-environments, imageproxy, imgproxy, helm-charts,
+        helm-starter). No API client, no spec, no examples.
+    - kind: Postman collection
+      reason: No Postman workspace or collection is published or linked.
+    - kind: Status page
+      reason: status.offerpad.com does not resolve; no status host is linked.
+    - kind: security.txt / VDP
+      reason: >-
+        404 at both /.well-known/security.txt and /security.txt; no
+        vulnerability disclosure programme is linked from the site.
+
+agentReadiness:
+  llmsTxt:
+    url: https://www.offerpad.com/llms.txt
+    status: 200
+    contentType: text/plain
+    bytes: 3308
+    generator: Yoast SEO v28.0
+    note: >-
+      A genuine agent-readable artifact, but SEO-generated: it lists marketing
+      pages, articles and location pages. It contains no API, endpoint, auth or
+      capability information.
+  mcp: none
+  agentSkills: none
+  aiPlugin: 404
+
+products:
+  - name: Cash Offer (sell to Offerpad)
+    humanURL: https://www.offerpad.com/sell/
+    api: false
+  - name: Browse Homes / Buy
+    humanURL: https://www.offerpad.com/buy/
+    api: false
+  - name: Offerpad Renovate
+    humanURL: https://www.offerpad.com/renovate/
+    api: false
+  - name: Free Local Move
+    humanURL: https://www.offerpad.com/move-for-free/
+    api: false
+  - name: Agent Partnership Program / Powered By Offerpad
+    humanURL: https://www.offerpad.com/agents/
+    api: false
+    note: >-
+      3% referral fee at closing (4% promotional through 2026-07-31) less a
+      $300 transaction fee; no membership or sign-up fee; 25,000+ agents and
+      brokers participated since 2020. Pro and Max tiers get the PBO portal.
+  - name: Offerpad Direct+ (investor buyer program)
+    humanURL: https://www.offerpad.com/dplusonboarding/
+    api: false
+    note: Portal account + member intake form + Mutual Non-Disclosure Agreement.
+  - name: Homebuilder Services
+    humanURL: https://www.offerpad.com/hba/
+    api: false
+    note: Contact form only; builder@offerpad.com.
+  - name: Vendor Network
+    humanURL: https://www.offerpad.com/vendors/
+    api: false
+    note: Interest form at https://www.offerpad.com/vendor-interest/.
+  - name: SCOUT and HENRY (internal AI platforms)
+    humanURL: https://www.offerpad.com/press/
+    api: false
+    note: >-
+      Announced 2026-03-18. SCOUT does seller intake and routing; HENRY does
+      portfolio intelligence with computer-vision renovation estimating. Both
+      are explicitly internal — no external API, no developer access.
+
+corporate:
+  legalName: Offerpad Solutions Inc.
+  ticker: 'NYSE: OPAD'
+  headquarters: Chandler, Arizona, United States
+  githubLocation: Gilbert, AZ
+  brokerageEntities:
+    - Offerpad Brokerage, LLC
+    - Offerpad Brokerage CA, Inc.
+    - Offerpad Brokerage FL, LLC
+  licensedStates:
+    - Alabama
+    - Arizona
+    - California
+    - Colorado
+    - Florida
+    - Georgia
+    - Illinois
+    - Indiana
+    - Kansas
+    - Missouri
+    - Nevada
+    - North Carolina
+    - Ohio
+    - South Carolina
+    - Tennessee
+    - Texas
+    - Utah
+  github:
+    org: https://github.com/Offerpad
+    created: '2017-08-18'
+    publicRepos: 6
+
+strengths:
+  - Serves a real, anonymously fetchable llms.txt for agent consumers.
+  - Publishes a complete Yoast sitemap index, making the public surface enumerable.
+  - Brokerage licensing is disclosed per-entity and per-state at /licenses/.
+  - Partner programme terms (referral percentages, fees, tiers) are stated publicly.
+
+weaknesses:
+  - No developer portal, no API documentation, no API of any kind for real estate data.
+  - Not RESO certified and no OData, $metadata or UPI surface.
+  - No SDK, no webhooks, no Postman collection, no status page, no security.txt.
+  - Direct+ portal link on the live onboarding page points at a domain with no A record.
+  - The agent portal domain named in Offerpad's own press release (offerpad.pro) is parked with an expired certificate.
+  - Partner surfaces are NDA-gated web forms, so nothing is machine-consumable.
+  - Bot protection returns 403 on several first-party hosts, hindering automated discovery.
+
+sources:
+  - https://www.offerpad.com/
+  - https://www.offerpad.com/about/
+  - https://www.offerpad.com/agents/
+  - https://www.offerpad.com/pbo/
+  - https://www.offerpad.com/builders/
+  - https://www.offerpad.com/hba/
+  - https://www.offerpad.com/vendors/
+  - https://www.offerpad.com/licenses/
+  - https://www.offerpad.com/dplusonboarding/
+  - https://www.offerpad.com/llms.txt
+  - https://www.offerpad.com/robots.txt
+  - https://www.offerpad.com/sitemap_index.xml
+  - https://www.offerpad.com/page-sitemap.xml
+  - https://www.offerpad.com/wp-json/
+  - https://connect.offerpad.com/auth/login
+  - https://connect.offerpad.com/.well-known/apple-app-site-association
+  - https://investor.offerpad.com/news-releases/news-details/2024/Offerpad-Launches-Powered-By-Offerpad-Portal-Elevating-Agent-Partner-Experience-with-Innovative-Tools-and-Resources/default.aspx
+  - https://www.offerpad.com/press/offerpad-introduces-scout-and-henry-ai-platforms-built-to-make-every-home-transaction-smarter-company-anticipates-improved-conversion-reduced-acquisition-risk-and-greater-capital-efficiency-across/
+  - https://www.reso.org/certificates/
+  - https://www.reso.org/certification/
+  - https://api.github.com/orgs/Offerpad

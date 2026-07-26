@@ -1,0 +1,159 @@
+aid: offerpad
+url: https://raw.githubusercontent.com/api-evangelist/offerpad/refs/heads/main/apis.yml
+name: Offerpad
+kind: company
+description: >-
+  Offerpad Solutions Inc. (NYSE: OPAD), headquartered in Chandler, Arizona, is a
+  United States iBuyer and licensed residential real estate brokerage that buys
+  homes directly from sellers for cash, renovates them, and resells them, while
+  also offering traditional listing services, a free local move, and a Renovate
+  service. It sits in the middle of the US residential value chain as a
+  principal-position buyer and MLS-participating brokerage in seventeen states,
+  consuming licensed MLS listing data rather than publishing it. Offerpad's API
+  posture is honestly minimal: there is no developer portal, no published API
+  documentation, and no self-serve API access of any kind. The developer.,
+  developers., api. and docs. subdomains do not resolve, and /developers, /api,
+  /docs, /openapi.json, /swagger.json and /api-docs all return 404. Offerpad is
+  NOT listed in the RESO certification directory, holds no RESO Web API or Data
+  Dictionary certification, and serves no OData service document, $metadata
+  document, or Universal Property Identifier. Its partner surfaces — the
+  Direct+ investor-buyer program, the Powered By Offerpad agent partner portal,
+  the homebuilder program and the vendor network — are human web portals gated
+  behind an intake form and a Mutual Non-Disclosure Agreement, with no
+  programmatic interface described anywhere. The only publicly callable,
+  self-describing API on the domain is the stock WordPress REST API of the
+  marketing site.
+accessModel:
+  pricing: free
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: No published developer API
+  confidence: high
+  source:
+    - probe
+  generated: '2026-07-26'
+  method: probed
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+  - Real Estate
+  - United States
+  - iBuyer
+  - PropTech
+  - Property Listings
+  - Brokerage
+  - MLS
+  - Cash Offer
+  - Renovation
+  - Home Buying
+created: '2026-07-26'
+modified: '2026-07-26'
+specificationVersion: '0.19'
+apis:
+  - aid: offerpad:offerpad-wordpress-rest-api
+    name: Offerpad WordPress REST API
+    description: >-
+      The stock WordPress REST API served by Offerpad's WP Engine-hosted
+      marketing site at https://www.offerpad.com/wp-json/. Confirmed live and
+      anonymously readable on 2026-07-26 (HTTP 200, application/json, 387,532
+      bytes), the root discovery document self-describes 411 routes across 20
+      namespaces including wp/v2, yoast/v1, gf/v2 (Gravity Forms),
+      redirection/v1 and elementor/v1, and advertises WordPress application
+      passwords as its authentication scheme. This is a content-management
+      surface for pages, posts, media and site metadata — it is NOT a real
+      estate, listing, valuation or transaction API, and Offerpad does not
+      document or support it as a developer product. It is catalogued here
+      because it is the only publicly callable, machine-describable API found
+      on any Offerpad host.
+    humanURL: https://developer.wordpress.org/rest-api/
+    baseURL: https://www.offerpad.com/wp-json
+    tags:
+      - CMS
+      - Content
+      - WordPress
+      - Marketing Site
+    properties:
+      - type: OpenAPI
+        url: openapi/offerpad-wp-json-discovery.json
+      - type: Documentation
+        url: https://developer.wordpress.org/rest-api/
+common:
+  - url: https://www.offerpad.com
+    name: Offerpad Website
+    type: Website
+  - url: https://www.offerpad.com/about/
+    name: About Offerpad
+    type: About
+  - url: https://www.offerpad.com/sell/
+    name: Sell to Offerpad
+    type: Product
+  - url: https://www.offerpad.com/renovate/
+    name: Offerpad Renovate
+    type: Product
+  - url: https://www.offerpad.com/agents/
+    name: Offerpad Agent Partnership Program
+    type: Partners
+  - url: https://www.offerpad.com/pbo/
+    name: Powered By Offerpad (Agent Partner Program)
+    type: Partners
+  - url: https://www.offerpad.com/dplusonboarding/
+    name: Offerpad Direct+ Member Onboarding
+    type: Onboarding
+  - url: https://www.offerpad.com/hba/
+    name: Offerpad Homebuilder Services
+    type: Partners
+  - url: https://www.offerpad.com/vendors/
+    name: Offerpad Vendor Network
+    type: Partners
+  - url: https://connect.offerpad.com/auth/login
+    name: Offerpad Connect Portal Login
+    type: Portal
+  - url: https://www.offerpad.com/llms.txt
+    name: Offerpad llms.txt
+    type: LLMsTxt
+  - url: https://www.offerpad.com/sitemap_index.xml
+    name: Offerpad Sitemap Index
+    type: Sitemap
+  - url: https://www.offerpad.com/articles/
+    name: Offerpad Articles
+    type: Blog
+  - url: https://www.offerpad.com/press/
+    name: Offerpad Press
+    type: PressRoom
+  - url: https://www.offerpad.com/faq/
+    name: Offerpad FAQ
+    type: Support
+  - url: https://www.offerpad.com/contact/
+    name: Contact Offerpad
+    type: Contact
+  - url: https://www.offerpad.com/licenses/
+    name: Offerpad Brokerage Licenses
+    type: Licensing
+  - url: https://investor.offerpad.com/
+    name: Offerpad Investor Relations
+    type: InvestorRelations
+  - url: https://www.offerpad.com/careers/
+    name: Offerpad Careers
+    type: Careers
+  - url: https://www.offerpad.com/terms-of-use/
+    name: Offerpad Terms of Use
+    type: TermsOfService
+  - url: https://www.offerpad.com/privacy-policy/
+    name: Offerpad Privacy Policy
+    type: PrivacyPolicy
+  - url: https://github.com/Offerpad
+    name: Offerpad on GitHub
+    type: GitHubOrganization
+  - url: https://www.linkedin.com/company/offerpad
+    name: Offerpad on LinkedIn
+    type: LinkedIn
+  - url: https://www.facebook.com/offerpad
+    name: Offerpad on Facebook
+    type: Facebook
+  - url: https://instagram.com/offerpad
+    name: Offerpad on Instagram
+    type: Instagram
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
