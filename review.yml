@@ -487,3 +487,124 @@ sources:
   - https://www.reso.org/certificates/
   - https://www.reso.org/certification/
   - https://api.github.com/orgs/Offerpad
+
+# ---------------------------------------------------------------------------
+# ENRICHMENT ROUND 2026-07-26 — the API that was there all along
+# ---------------------------------------------------------------------------
+enrichment:
+  round: '2026-07-26'
+  method: search + probe + derive
+  headline: >-
+    The first pass concluded Offerpad had no API beyond the marketing site's WordPress REST
+    API. That was right about the public surface and wrong about the estate. Offerpad runs a
+    real, versioned transaction API at https://helix.offerpad.com — it is simply undocumented
+    and closed. It was found by reading the API_URL constant compiled into the Offerpad Connect
+    single-page-app bundle, and confirmed by an anonymous HTTP 200 on
+    https://helix.offerpad.com/.well-known/oauth-authorization-server, a conformant RFC 8414
+    authorization-server metadata document. Certification is not reachability, and neither is
+    documentation: the capability exists, the contract does not.
+  findings:
+    - id: helix-backend
+      finding: >-
+        https://helix.offerpad.com is the private customer/transaction backend behind Offerpad
+        Connect and the Offerpad mobile apps. Nineteen endpoint paths were recorded verbatim from
+        the client bundle across identity (api/customer-auth/v2/*), offers (api/customer/v1/offers/),
+        transactions (customer/v3/my-transactions, customer/v3/cash-offer-transactions/,
+        .../markets), contracts (customer/v3/contracts/{contractId}/embedded-sign-info/{signatureId}),
+        documents, forms, feature flags and device registration. No schema is published and none
+        was inferred; no endpoint was called with credentials.
+      artifact: helix/offerpad-helix-observed-endpoints.yml
+      evidence: 'https://connect.offerpad.com/bundle.js (200, 3,311,621 bytes)'
+    - id: rfc8414-metadata
+      finding: >-
+        https://helix.offerpad.com/.well-known/oauth-authorization-server returns 200 with a
+        conformant RFC 8414 document delegating to the Okta custom authorization server
+        https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357. Authorization code + refresh token,
+        S256 PKCE, scopes openid/profile/email. Every other path on the host, including
+        /openapi.json, /swagger.json, /graphql and /docs, returns 404.
+      artifact: well-known/offerpad-well-known.yml
+    - id: okta-identity
+      finding: >-
+        The Okta custom authorization server publishes complete OpenID Connect Discovery 1.0
+        metadata anonymously — authorize, token, userinfo, jwks, introspect, revoke, logout,
+        device authorize and PAR endpoints, 24 scopes, 32 claims, RS256 id tokens, DPoP signing
+        algorithms. Offerpad's identity layer is therefore fully machine-discoverable while none
+        of its business capability is. There is no public client registration, so third parties
+        cannot obtain a client_id.
+      artifacts:
+        - authentication/offerpad-authentication.yml
+        - scopes/offerpad-scopes.yml
+    - id: derived-openapi
+      finding: >-
+        The wp/v2 namespace of the live WordPress route discovery document was mechanically
+        converted into an OpenAPI 3.1 definition — 128 paths, 227 operations, every parameter
+        name, type, enum, default and description copied verbatim from the discovery document.
+        Offerpad publishes no OpenAPI; the derivation is labelled as such in info.description and
+        x-apievangelist-method.
+      artifact: openapi/offerpad-wordpress-wp-v2-openapi.yml
+    - id: probed-errors
+      finding: >-
+        Four live error payloads captured anonymously — rest_no_route (404), rest_post_invalid_id
+        (404), rest_forbidden (401 on /wp/v2/settings) and rest_invalid_param (400 with nested
+        rest_out_of_bounds detail) — plus the helix envelope {"statusCode","message"}. Neither
+        surface uses RFC 9457.
+      artifact: errors/offerpad-problem-types.yml
+    - id: pagination-observed
+      finding: >-
+        GET /wp/v2/posts?per_page=2 returned X-WP-Total 471, X-WP-TotalPages 236 and an RFC 8288
+        Link rel="next" header, with Access-Control-Expose-Headers advertising all three. Cache-Control
+        is max-age=600, must-revalidate. No rate-limit header of any kind is returned.
+      artifact: conventions/offerpad-conventions.yml
+    - id: no-packages
+      finding: >-
+        npm, PyPI, RubyGems, NuGet, Packagist, crates.io and pkg.go.dev all return zero Offerpad
+        packages. The GitHub organisation holds one first-party repository (a CSS pattern library,
+        unpublished) and five forks of third-party infrastructure projects; it was last updated
+        2022-08-17.
+      artifact: packages/offerpad-packages.yml
+    - id: still-absent
+      finding: >-
+        Still nothing on: security.txt (404 everywhere), trust center, bug bounty, status page
+        (status.offerpad.com NXDOMAIN), changelog, deprecation policy, SLA, webhooks, events,
+        AsyncAPI, GraphQL, gRPC, sandbox, CLI, embedded components, Postman, SDKs, rate-limit
+        documentation, and any RESO/OData/UPI surface. No Idempotency, StatusPage, Deprecation,
+        Security, Compliance, TrustCenter, AsyncAPI, Webhooks, SDKs or ChangeLog pointer is
+        emitted, because none of those things exist.
+  artifactsAdded:
+    - openapi/offerpad-wordpress-wp-v2-openapi.yml
+    - overlays/offerpad-wordpress-wp-v2-overlay.yaml
+    - helix/offerpad-helix-observed-endpoints.yml
+    - well-known/offerpad-well-known.yml
+    - well-known/offerpad-helix-oauth-authorization-server.json
+    - well-known/offerpad-okta-openid-configuration.json
+    - well-known/offerpad-okta-oauth-authorization-server.json
+    - well-known/offerpad-okta-org-openid-configuration.json
+    - authentication/offerpad-authentication.yml
+    - scopes/offerpad-scopes.yml
+    - conventions/offerpad-conventions.yml
+    - errors/offerpad-problem-types.yml
+    - lifecycle/offerpad-lifecycle.yml
+    - conformance/offerpad-conformance.yml
+    - data-model/offerpad-data-model.yml
+    - packages/offerpad-packages.yml
+    - mcp/offerpad-mcp.yml
+    - mcp/offerpad-tool-crosswalk.yml
+    - skills/_index.yml
+    - skills/offerpad-read-site-content.md
+    - skills/offerpad-search-and-locations.md
+    - skills/offerpad-assess-api-access.md
+    - agentic-access/offerpad-agentic-access.yml
+    - security/offerpad-domain-security.yml
+    - examples/_index.yml
+    - llms/offerpad-llms.txt
+    - llms/offerpad-llms-api.txt
+  sourcesAdded:
+    - https://connect.offerpad.com/bundle.js
+    - https://helix.offerpad.com/.well-known/oauth-authorization-server
+    - https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/.well-known/openid-configuration
+    - https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/.well-known/oauth-authorization-server
+    - https://offerpad.okta.com/.well-known/openid-configuration
+    - https://www.offerpad.com/wp-json/wp/v2/posts
+    - https://www.offerpad.com/wp-json/wp/v2/settings
+    - https://www.offerpad.com/wp-json/wp/v2/search
+    - https://api.github.com/orgs/Offerpad/repos

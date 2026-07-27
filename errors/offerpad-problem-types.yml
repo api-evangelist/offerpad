@@ -1,0 +1,89 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  Live error payloads probed against https://www.offerpad.com/wp-json/ on 2026-07-26, plus
+  the private backend https://helix.offerpad.com
+format: wordpress-rest-error
+rfc9457: false
+note: >-
+  Neither Offerpad surface uses RFC 9457 application/problem+json. The WordPress REST API
+  returns its own envelope, {"code": string, "message": string, "data": {"status": int}},
+  as application/json with the HTTP status repeated in the body. The private helix backend
+  returns a different envelope again, {"statusCode": int, "message": string}. Every entry
+  below was captured from a real anonymous request; nothing is inferred.
+envelopes:
+  - surface: Offerpad WordPress REST API
+    media_type: application/json
+    fields:
+      code: Machine-readable error slug, e.g. rest_no_route.
+      message: Human-readable message.
+      data.status: HTTP status repeated in the body.
+      data.params: Per-parameter validation messages (rest_invalid_param only).
+      data.details: Structured per-parameter detail with its own code/message (rest_invalid_param only).
+    schema: openapi/offerpad-wordpress-wp-v2-openapi.yml#/components/schemas/WPError
+  - surface: Offerpad Helix customer backend (private)
+    media_type: application/json
+    fields:
+      statusCode: HTTP status repeated in the body.
+      message: Human-readable message.
+problems:
+  - code: rest_no_route
+    status: 404
+    title: No route was found matching the URL and request method.
+    surface: Offerpad WordPress REST API
+    remediation: >-
+      Check the path against the route list in openapi/offerpad-wp-json-discovery.json; the
+      method must also be one the route advertises.
+    observed:
+      request: GET https://www.offerpad.com/wp-json/wp/v2/nope
+      body: '{"code":"rest_no_route","message":"No route was found matching the URL and request method.","data":{"status":404}}'
+  - code: rest_post_invalid_id
+    status: 404
+    title: Invalid post ID.
+    surface: Offerpad WordPress REST API
+    remediation: List the collection first and use an id returned by it.
+    source_operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#getPostsById
+    observed:
+      request: GET https://www.offerpad.com/wp-json/wp/v2/posts/99999999
+      body: '{"code":"rest_post_invalid_id","message":"Invalid post ID.","data":{"status":404}}'
+  - code: rest_forbidden
+    status: 401
+    title: Sorry, you are not allowed to do that.
+    surface: Offerpad WordPress REST API
+    remediation: >-
+      The route requires an authenticated WordPress user with the right capability. Supply
+      an application password as HTTP Basic. Offerpad issues no self-serve credential, so
+      this status is terminal for third parties.
+    source_operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#getSettings
+    observed:
+      request: GET https://www.offerpad.com/wp-json/wp/v2/settings
+      body: '{"code":"rest_forbidden","message":"Sorry, you are not allowed to do that.","data":{"status":401}}'
+  - code: rest_invalid_param
+    status: 400
+    title: 'Invalid parameter(s).'
+    surface: Offerpad WordPress REST API
+    remediation: >-
+      Read data.details[param].message for the constraint that failed; the OpenAPI in
+      openapi/offerpad-wordpress-wp-v2-openapi.yml carries the same minimum/maximum/enum
+      constraints copied from the route discovery document.
+    nested_codes:
+      - rest_out_of_bounds
+    source_operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#listPosts
+    observed:
+      request: GET https://www.offerpad.com/wp-json/wp/v2/posts?per_page=9999
+      body: '{"code":"rest_invalid_param","message":"Invalid parameter(s): per_page","data":{"status":400,"params":{"per_page":"per_page must be between 1 (inclusive) and 100 (inclusive)"},"details":{"per_page":{"code":"rest_out_of_bounds","message":"per_page must be between 1 (inclusive) and 100 (inclusive)","data":null}}}}'
+  - code: '404'
+    status: 404
+    title: Resource not found
+    surface: Offerpad Helix customer backend (private)
+    remediation: >-
+      The helix backend returns this for every unrecognised path, including /, /docs,
+      /openapi.json and /graphql. Only /.well-known/oauth-authorization-server resolves
+      anonymously.
+    observed:
+      request: GET https://helix.offerpad.com/
+      body: '{ "statusCode": 404, "message": "Resource not found" }'
+gaps:
+  - Offerpad publishes no error reference page for any surface.
+  - No error catalogue, no retry guidance, no correlation-id contract is documented.
+  - 5xx behaviour was not exercised; no server error was observed during probing.

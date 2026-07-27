@@ -1,0 +1,109 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  Live probes of Offerpad hosts on 2026-07-26 plus derivation from
+  openapi/offerpad-wordpress-wp-v2-openapi.yml, well-known/ and authentication/
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      https://helix.offerpad.com/.well-known/oauth-authorization-server (HTTP 200) advertises
+      authorization_code and refresh_token grants against an Okta authorization server.
+  - id: rfc8414-authorization-server-metadata
+    conforms: true
+    evidence: >-
+      Both https://helix.offerpad.com/.well-known/oauth-authorization-server and
+      https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/.well-known/oauth-authorization-server
+      return conformant RFC 8414 metadata documents.
+  - id: openid-connect-discovery
+    conforms: true
+    evidence: >-
+      https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/.well-known/openid-configuration
+      (HTTP 200) is a complete OIDC Discovery 1.0 document with issuer, jwks_uri, userinfo and
+      32 supported claims.
+  - id: rfc7636-pkce
+    conforms: true
+    evidence: 'code_challenge_methods_supported: ["S256"] on both authorization-server documents.'
+  - id: rfc7662-token-introspection
+    conforms: true
+    evidence: introspection_endpoint published by the Okta authorization server.
+  - id: rfc7009-token-revocation
+    conforms: true
+    evidence: revocation_endpoint published by the Okta authorization server.
+  - id: rfc9126-pushed-authorization-requests
+    conforms: true
+    evidence: pushed_authorization_request_endpoint published by the Okta authorization server.
+  - id: rfc9449-dpop
+    conforms: true
+    evidence: dpop_signing_alg_values_supported published by the Okta authorization server.
+  - id: rfc8628-device-authorization-grant
+    conforms: true
+    evidence: device_authorization_endpoint and urn:ietf:params:oauth:grant-type:device_code advertised.
+  - id: rfc8288-web-linking
+    conforms: true
+    evidence: >-
+      'Link: <...page=2>; rel="next"' returned by GET https://www.offerpad.com/wp-json/wp/v2/posts.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: /.well-known/security.txt returns 404 on every Offerpad host probed.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors are the WordPress envelope {"code","message","data.status"} as application/json;
+      no application/problem+json response was observed. See errors/offerpad-problem-types.yml.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: No Sunset or Deprecation header returned; no deprecation policy published.
+  - id: openapi
+    conforms: false
+    evidence: >-
+      Offerpad publishes no OpenAPI definition. openapi/offerpad-wordpress-wp-v2-openapi.yml is
+      derived by API Evangelist from the live WordPress route discovery document, not published
+      by Offerpad.
+  - id: asyncapi
+    conforms: false
+    evidence: No event, streaming or webhook surface exists on any Offerpad host.
+  - id: graphql
+    conforms: false
+    evidence: /graphql returns 404 on helix.offerpad.com and the SPA shell on connect.offerpad.com.
+  - id: json-api
+    conforms: false
+    evidence: Responses are plain JSON resource objects, not JSON:API documents.
+  - id: odata
+    conforms: false
+    evidence: No OData service document and no $metadata document on any host.
+  - id: reso-web-api
+    conforms: false
+    evidence: >-
+      Offerpad does not appear in the RESO certificates directory
+      (https://www.reso.org/certificates/, fetched 2026-07-26, zero occurrences) and serves no
+      OData listing endpoint. Offerpad is an MLS data consumer as a licensed brokerage, not a
+      certified RESO data provider. See review.yml sectorPosture.
+  - id: reso-data-dictionary
+    conforms: false
+    evidence: No RESO Data Dictionary reference or Universal Property Identifier support anywhere.
+  - id: idempotency-key
+    conforms: false
+    evidence: No Idempotency-Key contract on any surface. See conventions/offerpad-conventions.yml.
+  - id: pagination
+    conforms: true
+    evidence: >-
+      page/per_page with X-WP-Total and X-WP-TotalPages headers, observed live
+      (471 posts / 236 pages at per_page=2).
+  - id: cors
+    conforms: true
+    evidence: >-
+      Access-Control-Allow-Headers and Access-Control-Expose-Headers returned by the WordPress
+      REST API.
+compliance_program:
+  published: false
+  certifications: []
+  note: >-
+    Offerpad publishes no trust center, no SOC 2 / ISO 27001 / PCI DSS attestation page and no
+    compliance program page. probe-security-programs.py found no trust center and no
+    vulnerability-disclosure programme on 2026-07-26. No Compliance and no TrustCenter pointer
+    is emitted. Offerpad's public regulatory posture is state real-estate brokerage licensing,
+    published at https://www.offerpad.com/licenses/, plus SEC reporting as NYSE: OPAD.
+  regulatory:
+    - {kind: state-brokerage-licensing, url: 'https://www.offerpad.com/licenses/'}
+    - {kind: sec-reporting, url: 'https://investor.offerpad.com/'}

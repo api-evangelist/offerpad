@@ -1,0 +1,96 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  Live response headers and payloads probed against https://www.offerpad.com/wp-json/ on
+  2026-07-26, the wp-json route discovery document, and
+  openapi/offerpad-wordpress-wp-v2-openapi.yml
+scope: >-
+  Cross-cutting request/response semantics for the only publicly callable Offerpad API. Every
+  convention below was observed on the wire; Offerpad itself documents none of them, and the
+  semantics are those of WordPress core rather than an Offerpad design guide.
+authentication:
+  style: HTTP Basic with a WordPress application password
+  anonymous_read: true
+  detail: authentication/offerpad-authentication.yml
+  header: 'Authorization: Basic base64(user:application-password)'
+  cors:
+    access_control_allow_headers: [Authorization, X-WP-Nonce, Content-Disposition, Content-MD5, Content-Type]
+    access_control_expose_headers: [X-WP-Total, X-WP-TotalPages, Link]
+idempotency:
+  supported: false
+  note: >-
+    No Idempotency-Key header, no idempotent-retry contract and no request-replay window are
+    advertised on any Offerpad surface. GET/PUT/DELETE are idempotent only by HTTP method
+    semantics. No Idempotency pointer is emitted for this provider.
+pagination:
+  style: page-number with limit
+  parameters:
+    page: {type: integer, default: 1, minimum: 1, description: Current page of the collection.}
+    per_page: {type: integer, default: 10, minimum: 1, maximum: 100, description: Maximum items per page.}
+    offset: {type: integer, description: Offset the result set by a specific number of items.}
+  response_headers:
+    X-WP-Total: Total number of items in the collection.
+    X-WP-TotalPages: Total number of pages at the current per_page.
+    Link: 'RFC 8288 link header with rel="next" / rel="prev".'
+  observed:
+    request: GET https://www.offerpad.com/wp-json/wp/v2/posts?per_page=2
+    x_wp_total: 471
+    x_wp_totalpages: 236
+    link: '<https://www.offerpad.com/wp-json/wp/v2/posts?per_page=2&page=2>; rel="next"'
+  over_limit_behaviour: 'per_page above 100 returns HTTP 400 rest_invalid_param / rest_out_of_bounds.'
+filtering_and_sorting:
+  search: 'search (string), search_semantics (exact), search_columns'
+  ordering: 'order (asc|desc), orderby (date, id, include, relevance, slug, title, modified, ...)'
+  date_windows: [after, before, modified_after, modified_before]
+  set_membership: [include, exclude, author, author_exclude, categories, categories_exclude, tags, tags_exclude, slug, status]
+field_selection:
+  sparse_fieldsets:
+    parameter: _fields
+    note: WordPress core supports _fields to limit returned properties on any route.
+  context:
+    parameter: context
+    values: [view, embed, edit]
+    default: view
+    note: >-
+      context=edit requires an authenticated user; anonymous callers are limited to view and
+      embed, which is why the edit-context fields never appear in the captured examples.
+  embedding:
+    parameter: _embed
+    note: 'Expands _links into an _embedded object (author, featured media, terms).'
+  hateoas: 'Every resource carries an _links object of RFC 8288 relations; see examples/.'
+metadata:
+  note: >-
+    Objects expose a meta object for registered custom fields; only fields registered with
+    show_in_rest appear. No Offerpad-specific meta was observed on the public routes.
+request_tracing:
+  correlation_id: none
+  note: No request-id or trace header is returned by any Offerpad host probed.
+versioning:
+  style: uri-path namespace
+  current: wp/v2
+  namespaces_live: 20
+  routes_live: 411
+  detail: lifecycle/offerpad-lifecycle.yml
+error_envelope:
+  format: wordpress-rest-error
+  rfc9457: false
+  shape: '{"code": string, "message": string, "data": {"status": int}}'
+  detail: errors/offerpad-problem-types.yml
+rate_limiting:
+  documented: false
+  signalled: false
+  note: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header was returned on any probed request.
+    The host sits behind WP Engine and Cloudflare, so unpublished edge throttling should be
+    assumed by any consumer.
+caching:
+  cache_control: 'max-age=600, must-revalidate on collection reads'
+  x_robots_tag: noindex
+  note: Responses are edge-cached for ten minutes; ETag/conditional-request support was not observed.
+private_backend:
+  host: https://helix.offerpad.com
+  note: >-
+    Path style is <domain>/<audience>/<version>/<resource>, e.g. customer/v3/my-transactions
+    and api/customer-auth/v2/token. Content-Type application/json. Bearer tokens from the
+    Okta authorization server. Undocumented and not self-serve; see
+    helix/offerpad-helix-observed-endpoints.yml.

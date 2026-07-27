@@ -1,0 +1,111 @@
+generated: '2026-07-26'
+method: searched
+source: live /.well-known/ probes of every Offerpad host in apis.yml plus the API host discovered in the Offerpad Connect client bundle
+summary: >-
+  Offerpad's marketing host publishes nothing under /.well-known/ — security.txt,
+  openid-configuration, oauth-authorization-server, api-catalog and ai-plugin.json all
+  return 404. The one real discovery document on the estate is an RFC 8414 OAuth 2.0
+  Authorization Server Metadata document served anonymously by the private customer
+  backend at https://helix.offerpad.com/.well-known/oauth-authorization-server, which
+  delegates identity to an Okta custom authorization server
+  (https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357). That Okta issuer serves full
+  OpenID Connect discovery and RFC 8414 metadata anonymously, so Offerpad's customer
+  identity layer is machine-discoverable even though no Offerpad API is documented.
+hosts:
+  - host: https://www.offerpad.com
+    role: marketing site and WordPress REST API host
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /llms.txt
+        status: 200
+        file: ../llms/offerpad-llms.txt
+        note: Yoast SEO v28.0 generated llms.txt, saved verbatim under llms/.
+  - host: https://helix.offerpad.com
+    role: >-
+      Private Offerpad customer/transaction backend. Discovered as API_URL in the Offerpad
+      Connect single-page-app bundle (https://connect.offerpad.com/bundle.js). Undocumented,
+      no self-serve access, every unknown path returns {"statusCode":404,"message":"Resource not found"}.
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        file: offerpad-helix-oauth-authorization-server.json
+        spec: RFC 8414 OAuth 2.0 Authorization Server Metadata
+        note: >-
+          Delegates to Okta. Advertises authorization_code + refresh_token grants, S256 PKCE,
+          response_type code, and scopes openid/profile/email.
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://offerpad.okta.com
+    role: Offerpad identity provider (Okta org), referenced by the helix authorization-server metadata
+    documents:
+      - path: /oauth2/ausftur6n2aTu6Sur357/.well-known/openid-configuration
+        status: 200
+        file: offerpad-okta-openid-configuration.json
+        spec: OpenID Connect Discovery 1.0
+        note: >-
+          Custom authorization server used by the Offerpad Connect customer portal. Publishes
+          authorization/token/userinfo/jwks/introspect/revoke/logout/device/PAR endpoints, 24
+          supported scopes, 32 claims, S256 PKCE and DPoP signing algorithms.
+      - path: /oauth2/ausftur6n2aTu6Sur357/.well-known/oauth-authorization-server
+        status: 200
+        file: offerpad-okta-oauth-authorization-server.json
+        spec: RFC 8414 OAuth 2.0 Authorization Server Metadata
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: offerpad-okta-org-openid-configuration.json
+        spec: OpenID Connect Discovery 1.0 (Okta org authorization server)
+  - host: https://connect.offerpad.com
+    role: Offerpad Connect customer portal (React SPA)
+    note: >-
+      Client-side routed single-page app. Every path — including /.well-known/* — returns the
+      same HTML shell with HTTP 200, so no path here is a discovery document. Recorded so a
+      future run does not misread the 200s as real artifacts.
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        real: false
+        note: HTML application shell, not RFC 9116 text.
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        real: false
+        note: HTML application shell, not RFC 8414 JSON.
+  - host: https://sell.offerpad.com
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+  - host: https://buy.offerpad.com
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+  - host: https://portal.offerpad.com
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+security_txt:
+  published: false
+  note: >-
+    No RFC 9116 security.txt on any Offerpad host probed on 2026-07-26. No SecurityTxt
+    pointer is emitted.

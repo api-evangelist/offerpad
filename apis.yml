@@ -22,7 +22,13 @@ description: >-
   behind an intake form and a Mutual Non-Disclosure Agreement, with no
   programmatic interface described anywhere. The only publicly callable,
   self-describing API on the domain is the stock WordPress REST API of the
-  marketing site.
+  marketing site. Offerpad does, however, run a real versioned transaction API
+  privately: helix.offerpad.com serves the customer identity, cash-offer
+  transaction, contract, document and form endpoints behind the Offerpad Connect
+  portal and mobile apps, and it publishes a live RFC 8414 authorization-server
+  metadata document delegating to Okta — so Offerpad's identity layer is machine
+  discoverable while none of its business capability is documented, schema-backed
+  or obtainable by a third party.
 accessModel:
   pricing: free
   onboarding: unknown
@@ -75,10 +81,103 @@ apis:
       - Marketing Site
     properties:
       - type: OpenAPI
+        name: >-
+          Offerpad WordPress REST API (wp/v2) — derived by API Evangelist from the live route
+          discovery document; Offerpad publishes no OpenAPI
+        url: openapi/offerpad-wordpress-wp-v2-openapi.yml
+      - type: Discovery
+        name: WordPress route discovery document, saved verbatim (411 routes, 20 namespaces)
         url: openapi/offerpad-wp-json-discovery.json
+      - type: Overlay
+        name: API Evangelist enhancements overlay
+        url: overlays/offerpad-wordpress-wp-v2-overlay.yaml
+      - type: Examples
+        name: Real captured responses from the live API
+        url: examples/_index.yml
+      - type: DataModel
+        name: Entity-relationship graph derived from the route discovery document
+        url: data-model/offerpad-data-model.yml
       - type: Documentation
+        name: Upstream WordPress REST API handbook (Offerpad publishes none of its own)
         url: https://developer.wordpress.org/rest-api/
+  - aid: offerpad:offerpad-helix-api
+    name: Offerpad Helix API (private customer backend)
+    description: >-
+      Offerpad's real transaction API, and it is closed. Discovered on 2026-07-26 as the API_URL
+      constant compiled into the Offerpad Connect single-page-app bundle at
+      https://connect.offerpad.com/bundle.js, the host at https://helix.offerpad.com serves the
+      customer identity, cash-offer transaction, contract, document, form and device endpoints
+      that the Offerpad Connect web portal and the Offerpad mobile apps call. It is entirely
+      undocumented: there is no developer portal, no reference, no schema and no public client
+      registration, and every path except /.well-known/oauth-authorization-server returns
+      {"statusCode":404,"message":"Resource not found"} to an anonymous caller. That one live
+      discovery document is a conformant RFC 8414 authorization-server metadata document
+      delegating to an Okta custom authorization server, which is why Offerpad's identity layer
+      is machine-discoverable while none of its business capability is. Catalogued as evidence
+      that the capability exists and is deliberately closed, not absent — the observed endpoint
+      inventory is recorded verbatim from the first-party client with no schemas inferred.
+    humanURL: https://connect.offerpad.com/auth/login
+    baseURL: https://helix.offerpad.com
+    tags:
+      - Private API
+      - iBuyer
+      - Real Estate
+      - Transactions
+      - Undocumented
+    properties:
+      - type: EndpointInventory
+        name: Observed endpoints, recorded from the first-party client bundle
+        url: helix/offerpad-helix-observed-endpoints.yml
+      - type: WellKnown
+        name: RFC 8414 authorization server metadata (live, anonymous)
+        url: well-known/offerpad-helix-oauth-authorization-server.json
+      - type: Authentication
+        name: Auth profile for both Offerpad API surfaces
+        url: authentication/offerpad-authentication.yml
+      - type: Portal
+        name: Offerpad Connect (the client for this backend)
+        url: https://connect.offerpad.com/auth/login
 common:
+  - type: AgenticAccess
+    url: agentic-access/offerpad-agentic-access.yml
+  - type: DomainSecurity
+    url: security/offerpad-domain-security.yml
+  - type: Authentication
+    name: Offerpad authentication profile (WordPress application passwords + Okta OAuth 2.0/OIDC)
+    url: authentication/offerpad-authentication.yml
+  - type: OAuthScopes
+    name: Scopes advertised by the Offerpad authorization servers
+    url: scopes/offerpad-scopes.yml
+  - type: WellKnown
+    name: /.well-known/ discovery index across every Offerpad host
+    url: well-known/offerpad-well-known.yml
+  - type: Conventions
+    name: Offerpad API conventions (paging, filtering, caching, error envelope)
+    url: conventions/offerpad-conventions.yml
+  - type: ErrorCatalog
+    name: Error catalogue built from live probed error payloads
+    url: errors/offerpad-problem-types.yml
+  - type: Lifecycle
+    name: Versioning, deprecation, status and SLA posture
+    url: lifecycle/offerpad-lifecycle.yml
+  - type: Conformance
+    name: Standards conformance assessment
+    url: conformance/offerpad-conformance.yml
+  - type: Packages
+    name: Client library survey (no Offerpad package exists in any registry)
+    url: packages/offerpad-packages.yml
+  - type: MCPServer
+    name: Candidate MCP tool surface derived from the public content API
+    url: mcp/offerpad-mcp.yml
+  - type: ToolCrosswalk
+    name: Candidate MCP tools bound to their backing operations
+    url: mcp/offerpad-tool-crosswalk.yml
+  - type: AgentSkill
+    name: Agent skills for the Offerpad public API
+    url: skills/_index.yml
+  - type: LLMsTxt
+    name: API Evangelist llms.txt for the Offerpad API surface
+    url: llms/offerpad-llms-api.txt
   - url: https://www.offerpad.com
     name: Offerpad Website
     type: Website
@@ -109,6 +208,9 @@ common:
   - url: https://connect.offerpad.com/auth/login
     name: Offerpad Connect Portal Login
     type: Portal
+  - url: https://connect.offerpad.com/auth/register
+    name: Create an Offerpad Connect account
+    type: SignUp
   - url: https://www.offerpad.com/llms.txt
     name: Offerpad llms.txt
     type: LLMsTxt

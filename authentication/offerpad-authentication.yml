@@ -1,0 +1,113 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  Live probes: https://www.offerpad.com/wp-json/ discovery document,
+  https://helix.offerpad.com/.well-known/oauth-authorization-server,
+  https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/.well-known/openid-configuration,
+  and openapi/offerpad-wordpress-wp-v2-openapi.yml
+summary:
+  types:
+    - http
+    - oauth2
+    - openIdConnect
+  api_key_in: []
+  oauth2_flows:
+    - authorizationCode
+  self_serve: false
+  note: >-
+    Offerpad publishes no developer authentication documentation, no API key programme and
+    no client registration path. Both auth surfaces below were discovered by probing, not
+    from developer docs. Neither grants access to any real estate, listing, valuation or
+    transaction capability on a self-serve basis.
+schemes:
+  - name: applicationPasswords
+    type: http
+    scheme: basic
+    surface: Offerpad WordPress REST API
+    sources:
+      - openapi/offerpad-wordpress-wp-v2-openapi.yml
+      - openapi/offerpad-wp-json-discovery.json
+    description: >-
+      WordPress application passwords, advertised in the wp-json discovery document under
+      authentication.application-passwords. Credentials are issued interactively at
+      https://www.offerpad.com/wp-admin/authorize-application.php and sent as HTTP Basic.
+      Required for every write route and for reads in the edit context; anonymous callers
+      get the view context only. Issuance requires an Offerpad WordPress account — there is
+      no self-serve signup, so this is effectively staff-only.
+    authorization_endpoint: https://www.offerpad.com/wp-admin/authorize-application.php
+    anonymous_read: true
+    evidence:
+      - {source: 'https://www.offerpad.com/wp-json/', status: 200, finding: 'authentication.application-passwords.endpoints.authorization present'}
+      - {source: 'https://www.offerpad.com/wp-json/wp/v2/settings', status: 401, finding: '{"code":"rest_forbidden","message":"Sorry, you are not allowed to do that.","data":{"status":401}}'}
+  - name: offerpadHelixOAuth
+    type: oauth2
+    surface: Offerpad Helix customer backend (private)
+    sources:
+      - well-known/offerpad-helix-oauth-authorization-server.json
+    description: >-
+      The private customer backend at https://helix.offerpad.com serves an RFC 8414
+      authorization-server metadata document anonymously. It delegates to an Okta custom
+      authorization server. Public clients (the Offerpad Connect SPA and the Offerpad mobile
+      apps) use authorization code with S256 PKCE; there is no public client registration,
+      so third parties cannot obtain a client_id.
+    flows:
+      - flow: authorizationCode
+        issuer: https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357
+        authorizationUrl: https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/v1/authorize
+        tokenUrl: https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/v1/token
+        scopes:
+          openid: Issue an OpenID Connect ID token for the signed-in Offerpad customer.
+          profile: Basic profile claims for the signed-in customer.
+          email: Email address and verification status for the signed-in customer.
+    grant_types_supported:
+      - authorization_code
+      - refresh_token
+    code_challenge_methods_supported:
+      - S256
+    token_endpoint_auth_methods_supported:
+      - client_secret_post
+      - client_secret_basic
+    evidence:
+      - {source: 'https://helix.offerpad.com/.well-known/oauth-authorization-server', status: 200}
+  - name: offerpadOkta
+    type: openIdConnect
+    surface: Offerpad customer identity (Okta)
+    openIdConnectUrl: https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/.well-known/openid-configuration
+    sources:
+      - well-known/offerpad-okta-openid-configuration.json
+      - well-known/offerpad-okta-org-openid-configuration.json
+    description: >-
+      Full OpenID Connect Discovery 1.0 metadata, served anonymously. Endpoints: authorize,
+      token, userinfo, jwks, introspect, revoke, end_session, device authorize, and pushed
+      authorization requests (PAR). ID tokens are RS256 signed; DPoP signing algorithms are
+      advertised. 32 standard claims are supported. The Okta org-level issuer
+      (https://offerpad.okta.com) is also discoverable and adds a groups scope.
+    endpoints:
+      authorization: https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/v1/authorize
+      token: https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/v1/token
+      userinfo: https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/v1/userinfo
+      jwks: https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/v1/keys
+      introspection: https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/v1/introspect
+      revocation: https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/v1/revoke
+      end_session: https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/v1/logout
+      device_authorization: https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/v1/device/authorize
+      pushed_authorization_request: https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/v1/par
+      registration: https://offerpad.okta.com/oauth2/v1/clients
+    id_token_signing_alg_values_supported:
+      - RS256
+    dpop_signing_alg_values_supported:
+      - RS256
+      - RS384
+      - RS512
+      - ES256
+      - ES384
+      - ES512
+    evidence:
+      - {source: 'https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/.well-known/openid-configuration', status: 200}
+      - {source: 'https://offerpad.okta.com/.well-known/openid-configuration', status: 200}
+not_found:
+  - api_keys: No API key programme, key management console or key documentation exists on any Offerpad host.
+  - mutual_tls: No mTLS surface advertised.
+  - partner_auth: >-
+      The Direct+, Powered By Offerpad, homebuilder and vendor partner programmes are gated
+      behind intake forms and an NDA; no programmatic credential is described anywhere.

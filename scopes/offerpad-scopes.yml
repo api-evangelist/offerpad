@@ -1,0 +1,92 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  https://helix.offerpad.com/.well-known/oauth-authorization-server and
+  https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/.well-known/openid-configuration
+note: >-
+  Offerpad publishes no scope reference page. Every scope below is taken verbatim from the
+  scopes_supported array of an anonymously fetchable RFC 8414 / OpenID Connect discovery
+  document. Descriptions are the standard OpenID Connect and Okta meanings for these scope
+  names — Offerpad documents none of them. The helix backend advertises only the three
+  OIDC scopes; the underlying Okta custom authorization server advertises a wider set that
+  includes Okta's own MyAccount scopes, which are platform scopes rather than Offerpad
+  business scopes.
+schemes:
+  - name: offerpadHelixOAuth
+    source: well-known/offerpad-helix-oauth-authorization-server.json
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/v1/authorize
+        tokenUrl: https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357/v1/token
+        pkce: S256
+scopes:
+  - scope: openid
+    description: Request an OpenID Connect ID token for the signed-in Offerpad customer.
+    flows: [authorizationCode]
+    advertised_by: [helix, okta-custom-as, okta-org-as]
+    sources: [well-known/offerpad-helix-oauth-authorization-server.json]
+  - scope: profile
+    description: Basic profile claims (name, preferred_username, locale, updated_at).
+    flows: [authorizationCode]
+    advertised_by: [helix, okta-custom-as, okta-org-as]
+    sources: [well-known/offerpad-helix-oauth-authorization-server.json]
+  - scope: email
+    description: Email address and email_verified claim.
+    flows: [authorizationCode]
+    advertised_by: [helix, okta-custom-as, okta-org-as]
+    sources: [well-known/offerpad-helix-oauth-authorization-server.json]
+  - scope: address
+    description: Physical address claim.
+    flows: [authorizationCode]
+    advertised_by: [okta-custom-as, okta-org-as]
+    sources: [well-known/offerpad-okta-openid-configuration.json]
+  - scope: phone
+    description: Phone number and phone_number_verified claims.
+    flows: [authorizationCode]
+    advertised_by: [okta-custom-as, okta-org-as]
+    sources: [well-known/offerpad-okta-openid-configuration.json]
+  - scope: offline_access
+    description: Issue a refresh token so the client can renew access without re-prompting.
+    flows: [authorizationCode]
+    advertised_by: [okta-custom-as, okta-org-as]
+    sources: [well-known/offerpad-okta-openid-configuration.json]
+  - scope: device_sso
+    description: Okta device single sign-on token issuance.
+    flows: [authorizationCode]
+    advertised_by: [okta-custom-as]
+    sources: [well-known/offerpad-okta-openid-configuration.json]
+  - scope: groups
+    description: Group memberships of the signed-in user (Okta org authorization server only).
+    flows: [authorizationCode]
+    advertised_by: [okta-org-as]
+    sources: [well-known/offerpad-okta-org-openid-configuration.json]
+  - scope: interclient_access
+    description: Okta token-exchange scope allowing one client to act for another.
+    flows: [authorizationCode]
+    advertised_by: [okta-custom-as]
+    sources: [well-known/offerpad-okta-openid-configuration.json]
+platform_scopes:
+  note: >-
+    Okta MyAccount management scopes advertised by the custom authorization server. These
+    govern the end user's own Okta account, not Offerpad business data.
+  scopes:
+    - okta.myAccount.read
+    - okta.myAccount.manage
+    - okta.myAccount.profile.read
+    - okta.myAccount.profile.manage
+    - okta.myAccount.email.read
+    - okta.myAccount.email.manage
+    - okta.myAccount.phone.read
+    - okta.myAccount.phone.manage
+    - okta.myAccount.authenticators.read
+    - okta.myAccount.authenticators.manage
+    - okta.myAccount.appAuthenticator.read
+    - okta.myAccount.appAuthenticator.manage
+    - okta.myAccount.appAuthenticator.maintenance.read
+    - okta.myAccount.appAuthenticator.maintenance.manage
+    - okta.myAccount.oktaApplications.read
+    - okta.myAccount.organization.read
+gaps:
+  - No Offerpad business scope (property, offer, contract, transaction, document) is advertised anywhere.
+  - No public client registration, so a third party cannot exercise any of these scopes.
+  - Offerpad publishes no scopes/permissions reference page to enrich these descriptions from.

@@ -1,0 +1,32 @@
+generated: '2026-07-26'
+method: searched
+source: Live anonymous requests to https://www.offerpad.com/wp-json/wp/v2 on 2026-07-26
+note: >-
+  Real captured responses, saved verbatim (re-indented only). Offerpad publishes no examples of
+  its own; these are the actual payloads the public API returns to an anonymous caller in the
+  view context.
+examples:
+  - file: offerpad-wp-v2-posts-response.json
+    request: GET /wp/v2/posts?per_page=1
+    status: 200
+    operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#listPosts
+    note: 'One Offerpad article with _links; X-WP-Total was 471 at capture.'
+  - file: offerpad-wp-v2-pages-response.json
+    request: GET /wp/v2/pages?per_page=1
+    status: 200
+    operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#listPages
+  - file: offerpad-wp-v2-categories-response.json
+    request: GET /wp/v2/categories?per_page=5
+    status: 200
+    operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#listCategories
+  - file: offerpad-wp-v2-types-response.json
+    request: GET /wp/v2/types
+    status: 200
+    operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#listTypes
+    note: Registered content types and their rest_base paths.
+  - file: offerpad-wp-v2-search-response.json
+    request: 'GET /wp/v2/search?search=cash%20offer&per_page=3'
+    status: 200
+    operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#listSearch
+error_examples:
+  note: Error payloads are catalogued verbatim in errors/offerpad-problem-types.yml.

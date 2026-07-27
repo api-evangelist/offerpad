@@ -1,0 +1,92 @@
+[
+  {
+    "id": 15638,
+    "title": "Offerpad Appoints Rich Ford as Chief Strategy Officer &amp; President of Cash Offer Marketplace",
+    "url": "https://www.offerpad.com/press/offerpad-appoints-rich-ford-as-chief-strategy-officer-president-of-cash-offer-marketplace/",
+    "type": "post",
+    "subtype": "post",
+    "_links": {
+      "self": [
+        {
+          "embeddable": true,
+          "href": "https://www.offerpad.com/wp-json/wp/v2/posts/15638",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "about": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/search"
+        }
+      ]
+    }
+  },
+  {
+    "id": 15423,
+    "title": "What a Cash Offer Is in Real Estate (and Why Homeowners Love It)",
+    "url": "https://www.offerpad.com/articles/what-a-cash-offer-is-in-real-estate-and-why-homeowners-love-it/",
+    "type": "post",
+    "subtype": "post",
+    "_links": {
+      "self": [
+        {
+          "embeddable": true,
+          "href": "https://www.offerpad.com/wp-json/wp/v2/posts/15423",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "about": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/search"
+        }
+      ]
+    }
+  },
+  {
+    "id": 14686,
+    "title": "How to get a cash offer for your home",
+    "url": "https://www.offerpad.com/how-to-get-a-cash-offer/",
+    "type": "post",
+    "subtype": "page",
+    "_links": {
+      "self": [
+        {
+          "embeddable": true,
+          "href": "https://www.offerpad.com/wp-json/wp/v2/pages/14686",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "about": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/types/page"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/search"
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,75 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  Live probes of https://www.offerpad.com, https://helix.offerpad.com and DNS for
+  status./trust./developer. subdomains on 2026-07-26
+versioning:
+  scheme: uri-path namespace
+  current: wp/v2
+  surface: Offerpad WordPress REST API
+  namespaces_live:
+    - wp/v2
+    - wp-block-editor/v1
+    - wp-site-health/v1
+    - wp-abilities/v1
+    - oembed/1.0
+    - yoast/v1
+    - gf/v2
+    - redirection/v1
+    - elementor/v1
+    - elementor-pro/v1
+    - elementor-one/v1
+    - elementor-ai/v1
+    - elementor/v1/documents
+    - elementor/v1/feedback
+    - genesisblocks/v1
+    - seo-autopilot/v1
+    - wp-rocket/v1
+    - wp-all-import/v1
+    - wpe/cache-plugin/v1
+    - wpe_sign_on_plugin/v1
+  note: >-
+    Versioning is inherited from WordPress core and its plugins, not chosen by Offerpad. The
+    private helix backend versions per audience path segment (customer/v3, api/customer-auth/v2,
+    api/customer/v1) and shows at least three live versions running side by side.
+  docs: https://developer.wordpress.org/rest-api/
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    Offerpad publishes no deprecation policy and returns no RFC 8594 Sunset or Deprecation
+    header. No Deprecation pointer is emitted.
+deprecated_operations: []
+status_page:
+  url: null
+  published: false
+  probes:
+    - {host: 'status.offerpad.com', result: NXDOMAIN}
+    - {url: 'https://www.offerpad.com/status', result: not published}
+  note: >-
+    No status page, no uptime history and no incident feed exist for any Offerpad surface. No
+    StatusPage pointer is emitted.
+sla:
+  url: null
+  uptime_target: null
+  note: No API service-level agreement is published; the partner programmes are NDA-gated.
+support:
+  faq: https://www.offerpad.com/faq/
+  contact: https://www.offerpad.com/contact/
+  note: >-
+    Support is consumer support for home sellers and buyers, not developer support. There is
+    no developer forum, no ticket queue and no support email for API consumers.
+change_log:
+  published: false
+  note: >-
+    Offerpad publishes a press room and an articles blog but no dated API or product
+    changelog. No ChangeLog pointer is emitted.
+  press: https://www.offerpad.com/press/
+  articles: https://www.offerpad.com/articles/
+observed_platform:
+  marketing_site: WordPress on WP Engine, fronted by Cloudflare
+  customer_portal: React single-page app at https://connect.offerpad.com
+  identity: Okta (offerpad.okta.com)
+  backend: https://helix.offerpad.com

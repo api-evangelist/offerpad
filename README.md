@@ -1,6 +1,6 @@
 # Offerpad (offerpad)
 
-Offerpad Solutions Inc. (NYSE: OPAD), headquartered in Chandler, Arizona, is a United States iBuyer and licensed residential real estate brokerage that buys homes directly from sellers for cash, renovates them, and resells them, while also offering traditional listing services, a free local move, and a Renovate service. It sits in the middle of the US residential value chain as a principal-position buyer and MLS-participating brokerage in seventeen states, consuming licensed MLS listing data rather than publishing it. Offerpad's API posture is honestly minimal: there is no developer portal, no published API documentation, and no self-serve API access of any kind. Offerpad is **not** listed in the RESO certification directory, holds no RESO Web API or Data Dictionary certification, and serves no OData service document, `$metadata` document, or Universal Property Identifier. Its partner surfaces are human web portals gated behind an intake form and a Mutual Non-Disclosure Agreement.
+Offerpad Solutions Inc. (NYSE: OPAD), headquartered in Chandler, Arizona, is a United States iBuyer and licensed residential real estate brokerage that buys homes directly from sellers for cash, renovates them, and resells them, while also offering traditional listing services, a free local move, and a Renovate service. It sits in the middle of the US residential value chain as a principal-position buyer and MLS-participating brokerage in seventeen states, consuming licensed MLS listing data rather than publishing it. Offerpad's API posture is honestly minimal: there is no developer portal, no published API documentation, and no self-serve API access of any kind. Offerpad is **not** listed in the RESO certification directory, holds no RESO Web API or Data Dictionary certification, and serves no OData service document, `$metadata` document, or Universal Property Identifier. Its partner surfaces are human web portals gated behind an intake form and a Mutual Non-Disclosure Agreement. Offerpad does run a real versioned transaction API — `helix.offerpad.com`, behind the Offerpad Connect portal and mobile apps — but it is undocumented, schema-less in public, and closed to third parties; see the Helix entry below.
 
 **APIs.json:** [https://raw.githubusercontent.com/api-evangelist/offerpad/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/offerpad/refs/heads/main/apis.yml)
 
@@ -40,8 +40,43 @@ The stock WordPress REST API served by Offerpad's WP Engine-hosted marketing sit
 
 #### Properties
 
-- [OpenAPI](openapi/offerpad-wp-json-discovery.json) — WordPress REST API root discovery document (not an OpenAPI document)
+- [OpenAPI](openapi/offerpad-wordpress-wp-v2-openapi.yml) — 128 paths / 227 operations, **derived by API Evangelist** from the live route discovery document; Offerpad publishes no OpenAPI
+- [Discovery](openapi/offerpad-wp-json-discovery.json) — WordPress REST API root discovery document, saved verbatim
+- [Overlay](overlays/offerpad-wordpress-wp-v2-overlay.yaml)
+- [Examples](examples/_index.yml) — real captured responses
+- [Data model](data-model/offerpad-data-model.yml)
 - [Documentation](https://developer.wordpress.org/rest-api/)
+
+### Offerpad Helix API (private customer backend)
+
+**Offerpad's real transaction API, and it is closed.** Discovered on 2026-07-26 as the `API_URL` constant compiled into the Offerpad Connect single-page-app bundle, `https://helix.offerpad.com` serves the customer identity, cash-offer transaction, contract, document, form and device endpoints that Offerpad Connect and the Offerpad mobile apps call. It is entirely undocumented — no portal, no reference, no schema, no public client registration — and every path except `/.well-known/oauth-authorization-server` returns `{"statusCode":404,"message":"Resource not found"}` anonymously. That one live document is a conformant RFC 8414 authorization-server metadata document delegating to an Okta custom authorization server, which is why Offerpad's *identity* layer is machine-discoverable while none of its *business* capability is. Catalogued as evidence that the capability exists and is deliberately closed, not absent; the endpoint inventory is recorded verbatim from the first-party client with **no schemas inferred**.
+
+- **Human URL:** [https://connect.offerpad.com/auth/login](https://connect.offerpad.com/auth/login)
+- **Base URL:** `https://helix.offerpad.com`
+
+#### Properties
+
+- [Observed endpoints](helix/offerpad-helix-observed-endpoints.yml)
+- [RFC 8414 authorization server metadata](well-known/offerpad-helix-oauth-authorization-server.json)
+- [Authentication](authentication/offerpad-authentication.yml)
+
+## Artifacts
+
+| Artifact | What it records |
+|---|---|
+| [Authentication](authentication/offerpad-authentication.yml) | WordPress application passwords; Okta OAuth 2.0 authorization code + S256 PKCE; OIDC discovery |
+| [OAuth scopes](scopes/offerpad-scopes.yml) | Scopes advertised by the helix and Okta authorization servers |
+| [Well-known](well-known/offerpad-well-known.yml) | Every `/.well-known/` probe across every Offerpad host, with status |
+| [Conventions](conventions/offerpad-conventions.yml) | Paging (`X-WP-Total` 471 / 236 pages), filtering, caching, error envelope, **no idempotency** |
+| [Error catalogue](errors/offerpad-problem-types.yml) | Four live-probed error payloads; not RFC 9457 |
+| [Lifecycle](lifecycle/offerpad-lifecycle.yml) | Versioning; no status page, no deprecation policy, no SLA |
+| [Conformance](conformance/offerpad-conformance.yml) | RFC 8414/7636/7662/7009/9126/9449/8628/8288 yes; RESO, OData, RFC 9457, AsyncAPI, GraphQL no |
+| [Packages](packages/offerpad-packages.yml) | Zero Offerpad packages in npm, PyPI, RubyGems, NuGet, Packagist, crates.io, pkg.go.dev |
+| [Domain security](security/offerpad-domain-security.yml) | TLS 1.3, HSTS, DNSSEC, CAA, SPF, DMARC (p=reject) |
+| [MCP](mcp/offerpad-mcp.yml) + [crosswalk](mcp/offerpad-tool-crosswalk.yml) | Candidate tool surface bound to real operations (no Offerpad MCP server exists) |
+| [Agent skills](skills/_index.yml) | Read site content; search and enumerate markets; assess what access actually exists |
+| [Agentic access](agentic-access/offerpad-agentic-access.yml) | Recommended `x-agentic-access` contract for all 227 operations |
+| [llms.txt](llms/offerpad-llms.txt) / [API llms.txt](llms/offerpad-llms-api.txt) | Offerpad's own Yoast-generated file, plus an API-surface file |
 
 ## RESO Posture
 
@@ -69,6 +104,7 @@ None of these grants, or mentions, data or API access. Open data: none.
 - [Homebuilder Services](https://www.offerpad.com/hba/)
 - [Vendor Network](https://www.offerpad.com/vendors/)
 - [Offerpad Connect Portal Login](https://connect.offerpad.com/auth/login)
+- [Create an Offerpad Connect account](https://connect.offerpad.com/auth/register)
 - [llms.txt](https://www.offerpad.com/llms.txt)
 - [Sitemap Index](https://www.offerpad.com/sitemap_index.xml)
 - [Articles](https://www.offerpad.com/articles/)

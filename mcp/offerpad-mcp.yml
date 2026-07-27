@@ -1,0 +1,71 @@
+generated: '2026-07-26'
+method: derived
+status: candidate
+source: openapi/offerpad-wordpress-wp-v2-openapi.yml
+search_result:
+  official_server: none
+  searched:
+    - Offerpad developer surfaces (no developer portal exists; developer./docs./api. subdomains are NXDOMAIN)
+    - https://www.offerpad.com/llms.txt (Yoast-generated marketing llms.txt, no tool list)
+    - Offerpad GitHub organisation (6 repos, no MCP server)
+    - npm (@modelcontextprotocol and offerpad searches, 0 results)
+  note: >-
+    Offerpad publishes no MCP server, hosted or local, and no agent-facing tooling of any kind.
+    The tools below are a CANDIDATE surface derived by API Evangelist from the derived OpenAPI of
+    the publicly callable WordPress REST API. They are anonymous read operations against the
+    marketing site's content — they cannot request a cash offer, price a home, read a contract or
+    touch any Offerpad transaction.
+server:
+  name: offerpad-wordpress
+  transport: stdio
+  url: null
+  base_url: https://www.offerpad.com/wp-json
+  authentication: none required for the read tools below (anonymous view context)
+tools:
+  - name: list_offerpad_articles
+    description: List articles published on the Offerpad site, with search, date-window and paging filters.
+    source_operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#listPosts
+    read_only: true
+  - name: get_offerpad_article
+    description: Retrieve one Offerpad article by its numeric id.
+    source_operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#getPostsById
+    read_only: true
+  - name: list_offerpad_pages
+    description: List Offerpad marketing pages, including the per-city sell landing pages.
+    source_operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#listPages
+    read_only: true
+  - name: get_offerpad_page
+    description: Retrieve one Offerpad marketing page by its numeric id.
+    source_operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#getPagesById
+    read_only: true
+  - name: search_offerpad_site
+    description: Search across Offerpad posts, pages and terms using the WordPress search route.
+    source_operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#listSearch
+    read_only: true
+  - name: list_offerpad_categories
+    description: List content categories used to organise Offerpad articles.
+    source_operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#listCategories
+    read_only: true
+  - name: list_offerpad_tags
+    description: List content tags used on Offerpad articles.
+    source_operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#listTags
+    read_only: true
+  - name: list_offerpad_media
+    description: List images and documents in the Offerpad media library.
+    source_operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#listMedia
+    read_only: true
+  - name: list_offerpad_content_types
+    description: List the registered content types on the Offerpad site and their REST base paths.
+    source_operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#listTypes
+    read_only: true
+  - name: list_offerpad_authors
+    description: List Offerpad site authors who have published content.
+    source_operation: openapi/offerpad-wordpress-wp-v2-openapi.yml#listUsers
+    read_only: true
+excluded:
+  reason: >-
+    Write operations are excluded from the candidate tool surface. Every wp/v2 write route
+    requires a WordPress application password that Offerpad does not issue to third parties, so a
+    tool binding to one would fail with rest_forbidden (HTTP 401).
+  operations_excluded: 103
+crosswalk: mcp/offerpad-tool-crosswalk.yml

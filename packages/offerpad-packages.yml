@@ -1,0 +1,43 @@
+generated: '2026-07-26'
+method: searched
+source: Public package registry searches performed 2026-07-26
+summary: >-
+  Offerpad ships no client libraries. Every major public registry was searched for an Offerpad
+  package and every one returned zero results. No SDKs pointer is emitted for this provider.
+packages: []
+registries_probed:
+  - {registry: npm, query: offerpad, endpoint: 'https://registry.npmjs.org/-/v1/search?text=offerpad', results: 0}
+  - {registry: pypi, query: offerpad, endpoint: 'https://pypi.org/pypi/offerpad/json', status: 404}
+  - {registry: pypi, query: offerpad-api, endpoint: 'https://pypi.org/pypi/offerpad-api/json', status: 404}
+  - {registry: rubygems, query: offerpad, results: 0}
+  - {registry: nuget, query: offerpad, results: 0}
+  - {registry: packagist, query: offerpad, results: 0, note: 'search returned unrelated packages only'}
+  - {registry: crates.io, query: offerpad, results: 0}
+  - {registry: pkg.go.dev, query: offerpad, results: 0}
+github_organization:
+  url: https://github.com/Offerpad
+  public_repos: 6
+  first_party:
+    - name: Offerpad/floorplan
+      language: CSS
+      description: Pattern library and CSS framework for OfferPad projects
+      published_package: false
+      note: Not published to npm; consumable only by cloning the repository.
+  forks_and_mirrors:
+    - Offerpad/virtual-environments
+    - Offerpad/imageproxy
+    - Offerpad/imgproxy
+    - Offerpad/helm-charts
+    - Offerpad/helm-starter
+  note: >-
+    The organisation has one first-party repository (a CSS pattern library) and five forks of
+    third-party infrastructure projects. No API client, no code samples and no OpenAPI live
+    there. Org last updated 2022-08-17.
+client_surfaces_without_sdks:
+  note: >-
+    Offerpad's own first-party clients talk to the private helix backend directly; none of that
+    client code is distributed as a reusable package.
+  clients:
+    - {name: 'Offerpad Connect (web)', url: 'https://connect.offerpad.com', tech: 'React SPA, bundle.js, axios against helix.offerpad.com'}
+    - {name: 'Offerpad iOS app', url: 'https://apps.apple.com/us/app/offerpad-buy-sell-homes/id1354052452'}
+    - {name: 'Offerpad Android app', url: 'https://play.google.com/store/apps/details?id=com.offerpad.mobile'}

@@ -1,0 +1,107 @@
+generated: '2026-07-26'
+method: derived
+source: mcp/offerpad-mcp.yml and openapi/offerpad-wordpress-wp-v2-openapi.yml
+status: candidate
+note: >-
+  Offerpad operates no MCP server, so there is no published tool list to bind. This crosswalk
+  binds the CANDIDATE tools in mcp/offerpad-mcp.yml to the operations they would call, so each
+  tool inherits a real input contract (the parameters and requestBody of the backing operation)
+  instead of a guessed one. Confidence is high throughout because every tool was derived from the
+  operation it binds to, not matched by name.
+surfaces:
+  openapi:
+    file: openapi/offerpad-wordpress-wp-v2-openapi.yml
+    published_by_provider: false
+    note: Derived by API Evangelist from the live WordPress route discovery document.
+  graphql:
+    endpoint: null
+    note: No GraphQL surface. /graphql is 404 on helix.offerpad.com and an SPA shell on connect.offerpad.com.
+  mcp:
+    url: null
+    gated: null
+    note: No MCP server exists to introspect with tools/list.
+  private_rest:
+    host: https://helix.offerpad.com
+    gated: true
+    note: >-
+      The real Offerpad business capability lives here and is not bindable — no schema is
+      published and no third-party credential exists. See helix/offerpad-helix-observed-endpoints.yml.
+crosswalk:
+  - tool: list_offerpad_articles
+    category: content
+    rest: [listPosts]
+    binding: rest
+    confidence: high
+  - tool: get_offerpad_article
+    category: content
+    rest: [getPostsById]
+    binding: rest
+    confidence: high
+  - tool: list_offerpad_pages
+    category: content
+    rest: [listPages]
+    binding: rest
+    confidence: high
+  - tool: get_offerpad_page
+    category: content
+    rest: [getPagesById]
+    binding: rest
+    confidence: high
+  - tool: search_offerpad_site
+    category: search
+    rest: [listSearch]
+    binding: rest
+    confidence: high
+  - tool: list_offerpad_categories
+    category: taxonomy
+    rest: [listCategories]
+    binding: rest
+    confidence: high
+  - tool: list_offerpad_tags
+    category: taxonomy
+    rest: [listTags]
+    binding: rest
+    confidence: high
+  - tool: list_offerpad_media
+    category: media
+    rest: [listMedia]
+    binding: rest
+    confidence: high
+  - tool: list_offerpad_content_types
+    category: metadata
+    rest: [listTypes]
+    binding: rest
+    confidence: high
+  - tool: list_offerpad_authors
+    category: people
+    rest: [listUsers]
+    binding: rest
+    confidence: high
+mcp_only: []
+rest_only:
+  - capability: content writes
+    operations_count: 103
+    note: >-
+      Every POST/DELETE route across posts, pages, media, comments, blocks, templates, menus,
+      settings, widgets and users. Excluded because they require a WordPress application password
+      Offerpad does not issue to third parties.
+  - capability: read routes not surfaced as tools
+    operations_count: 114
+    examples: [listComments, listMenus, listMenuItems, listTaxonomies, listStatuses, listBlocks, listTemplates, listThemes, listPlugins, listSettings]
+    note: >-
+      Editorial and site-administration reads. Most return only administrative metadata anonymously,
+      and several (listSettings, listPlugins, listThemes) return rest_forbidden without credentials.
+  - capability: other namespaces
+    operations_count: 283
+    note: >-
+      The live site advertises 411 routes across 20 namespaces; only the 128 wp/v2 routes are
+      captured in the OpenAPI. The remaining namespaces are plugin surfaces (yoast/v1, gf/v2,
+      elementor/v1, redirection/v1, wp-rocket/v1, wpe/cache-plugin/v1) enumerated in
+      openapi/offerpad-wp-json-discovery.json.
+coverage:
+  tools_named: 10
+  tools_bound: 10
+  mcp_only: 0
+  rest_operations_total: 227
+  rest_operations_with_tool: 10
+  rest_routes_live_all_namespaces: 411

@@ -1,0 +1,68 @@
+generated: '2026-07-26'
+method: searched
+source: >-
+  https://connect.offerpad.com/bundle.js (HTTP 200, 3,311,621 bytes, fetched 2026-07-26) and
+  live probes of https://helix.offerpad.com
+status: private-undocumented
+summary: >-
+  Offerpad does have a real API. It is a private customer backend at
+  https://helix.offerpad.com, discovered as the API_URL constant compiled into the Offerpad
+  Connect single-page-app bundle. It is undocumented, has no developer portal, no public client
+  registration and no self-serve access; the paths below are the ones the first-party web client
+  calls, recorded verbatim from the bundle. NO SCHEMAS ARE PUBLISHED and none are inferred here:
+  request and response shapes are unknown and were not exercised, because doing so would require
+  an Offerpad customer credential. This file exists so the catalog records that the capability
+  is real and closed, rather than absent.
+host: https://helix.offerpad.com
+transport: HTTPS/JSON
+authentication:
+  model: OAuth 2.0 authorization code with S256 PKCE, bearer token
+  authorization_server: https://offerpad.okta.com/oauth2/ausftur6n2aTu6Sur357
+  metadata: well-known/offerpad-helix-oauth-authorization-server.json
+  detail: authentication/offerpad-authentication.yml
+  public_client_registration: false
+probes:
+  - {path: /, status: 404, body: '{ "statusCode": 404, "message": "Resource not found" }'}
+  - {path: /openapi.json, status: 404}
+  - {path: /openapi.yaml, status: 404}
+  - {path: /swagger.json, status: 404}
+  - {path: /swagger/v1/swagger.json, status: 404}
+  - {path: /api-docs, status: 404}
+  - {path: /docs, status: 404}
+  - {path: /graphql, status: 404}
+  - {path: /health, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 200}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/security.txt, status: 404}
+observed_endpoints:
+  - {path: api/customer-auth/v2/register, area: identity, note: Customer account registration.}
+  - {path: api/customer-auth/v2/token, area: identity, note: Token exchange for the customer session.}
+  - {path: api/customer-auth/v2/profile, area: identity}
+  - {path: api/customer-auth/v2/forgot-password, area: identity}
+  - {path: api/customer-auth/v2/reset-password, area: identity}
+  - {path: api/customer-auth/v2/send-email-confirmation, area: identity}
+  - {path: api/customer-auth/v2/customer-user-request-delete, area: identity, note: Account deletion request.}
+  - {path: api/customer/v1/offers/, area: offers, note: Legacy v1 offers path still referenced by the client.}
+  - {path: customer/v3/my-transactions, area: transactions}
+  - {path: customer/v3/cash-offer-transactions/, area: transactions, note: The cash-offer transaction record — Offerpad's core iBuyer object.}
+  - {path: customer/v3/cash-offer-transactions/markets, area: transactions, note: Markets in which a cash offer can be requested.}
+  - {path: customer/v3/contracts/, area: contracts}
+  - {path: 'customer/v3/contracts/{contractId}/embedded-sign-info/{signatureId}', area: contracts, note: Embedded e-signature session info.}
+  - {path: customer/v3/documents/, area: documents}
+  - {path: customer/v3/documents/add-blob, area: documents}
+  - {path: customer/v3/forms/, area: forms}
+  - {path: customer/v3/feature-flags, area: platform}
+  - {path: customer/v3/register-device, area: platform, note: Push notification device registration (Firebase).}
+  - {path: customer/v3/remove-device, area: platform}
+related_hosts:
+  - {host: 'https://connect.offerpad.com', role: 'Offerpad Connect customer portal (React SPA) — the client for this backend'}
+  - {host: 'https://sell.offerpad.com', role: 'Request-offer funnel (REQUEST_PROPERTY_URL in the bundle)'}
+  - {host: 'https://buy.offerpad.com', role: 'Home search funnel'}
+  - {host: 'https://portal.offerpad.com', role: 'Agent home (portal.offerpad.com/agent-home)'}
+  - {host: 'https://www.offerpadhomeloans.com', role: 'Offerpad Home Loans'}
+caveats:
+  - No schema, no parameter list and no response shape is published or inferred.
+  - Paths are recorded exactly as they appear in the first-party client bundle; some may be legacy.
+  - No endpoint was called with credentials, and no endpoint was called beyond anonymous probing of the host root and discovery paths.
+  - This is not an offer of access — Offerpad publishes no way for a third party to obtain a client_id or a token.

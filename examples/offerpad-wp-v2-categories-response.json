@@ -1,0 +1,826 @@
+[
+  {
+    "id": 65,
+    "count": 328,
+    "description": "",
+    "link": "https://www.offerpad.com/category/articles/",
+    "name": "articles",
+    "slug": "articles",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.9 (Yoast SEO v28.1) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>articles Archives - Offerpad</title>\n<meta name=\"robots\" content=\"noindex, follow\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"articles Archives\" />\n<meta property=\"og:url\" content=\"https://www.offerpad.com/category/articles/\" />\n<meta property=\"og:site_name\" content=\"Offerpad\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@offerpad\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/\",\"url\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/\",\"name\":\"articles Archives - Offerpad\",\"isPartOf\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/www.offerpad.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"articles\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/www.offerpad.com\\/#website\",\"url\":\"https:\\/\\/www.offerpad.com\\/\",\"name\":\"Offerpad\",\"description\":\"The easiest way to buy and sell a home. Period. Get your cash offer today.\",\"publisher\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/www.offerpad.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":[\"Organization\",\"Place\"],\"@id\":\"https:\\/\\/www.offerpad.com\\/#organization\",\"name\":\"Offerpad\",\"url\":\"https:\\/\\/www.offerpad.com\\/\",\"logo\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/#local-main-organization-logo\"},\"image\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/#local-main-organization-logo\"},\"sameAs\":[\"https:\\/\\/www.facebook.com\\/Offerpad\\/\",\"https:\\/\\/x.com\\/offerpad\",\"https:\\/\\/www.linkedin.com\\/company\\/offerpad\",\"https:\\/\\/instagram.com\\/offerpad\"],\"description\":\"Offerpad (NYSE: OPAD) is an American real estate company founded in 2015 that operates a technology-enabled platform for selling and buying residential homes. The company offers three primary services: an all-cash offer purchase of homes; a traditional listing service with licensed local agents; and a hybrid option that pairs an upfront cash offer with potential additional proceeds after sale. Sellers can select a closing date (typically between 8 to 60 days) and in certain markets receive a complimentary local move (up to 80 miles) when selling directly to Offerpad. With an A+ BBB rating, nearly 72,000 transactions and $21B+ in volume since launch, Offerpad focuses on speed, certainty, and simple, transparent numbers for a best-in-class experience.\",\"legalName\":\"Offerpad Solutions Inc.\",\"foundingDate\":\"2015-06-01\",\"numberOfEmployees\":{\"@type\":\"QuantitativeValue\",\"minValue\":\"201\",\"maxValue\":\"500\"},\"address\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/#local-main-place-address\"},\"telephone\":[\"844.388.4539\"],\"contactPoint\":{\"@type\":\"ContactPoint\",\"email\":\"info@offerpad.com\"},\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Sunday\",\"Saturday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\"],\"opens\":\"07:00\",\"closes\":\"17:00\"}],\"faxNumber\":\"Offerpad\",\"areaServed\":\"United States\"},{\"@type\":\"PostalAddress\",\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/#local-main-place-address\",\"streetAddress\":\"433 S Farmer Ave Suite 500\",\"addressLocality\":\"Tempe\",\"postalCode\":\"85286\",\"addressRegion\":\"Arizona\",\"addressCountry\":\"US\"},{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/#local-main-organization-logo\",\"url\":\"https:\\/\\/www.offerpad.com\\/wp-content\\/uploads\\/2025\\/08\\/offerpad-logo-square.png\",\"contentUrl\":\"https:\\/\\/www.offerpad.com\\/wp-content\\/uploads\\/2025\\/08\\/offerpad-logo-square.png\",\"width\":684,\"height\":683,\"caption\":\"Offerpad\"}]}</script>\n<meta name=\"geo.placename\" content=\"Tempe\" />\n<meta name=\"geo.region\" content=\"United States (US)\" />\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "articles Archives - Offerpad",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "articles Archives",
+      "og_url": "https://www.offerpad.com/category/articles/",
+      "og_site_name": "Offerpad",
+      "twitter_card": "summary_large_image",
+      "twitter_site": "@offerpad",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://www.offerpad.com/category/articles/",
+            "url": "https://www.offerpad.com/category/articles/",
+            "name": "articles Archives - Offerpad",
+            "isPartOf": {
+              "@id": "https://www.offerpad.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://www.offerpad.com/category/articles/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://www.offerpad.com/category/articles/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.offerpad.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "articles"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.offerpad.com/#website",
+            "url": "https://www.offerpad.com/",
+            "name": "Offerpad",
+            "description": "The easiest way to buy and sell a home. Period. Get your cash offer today.",
+            "publisher": {
+              "@id": "https://www.offerpad.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://www.offerpad.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": [
+              "Organization",
+              "Place"
+            ],
+            "@id": "https://www.offerpad.com/#organization",
+            "name": "Offerpad",
+            "url": "https://www.offerpad.com/",
+            "logo": {
+              "@id": "https://www.offerpad.com/category/articles/#local-main-organization-logo"
+            },
+            "image": {
+              "@id": "https://www.offerpad.com/category/articles/#local-main-organization-logo"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Offerpad/",
+              "https://x.com/offerpad",
+              "https://www.linkedin.com/company/offerpad",
+              "https://instagram.com/offerpad"
+            ],
+            "description": "Offerpad (NYSE: OPAD) is an American real estate company founded in 2015 that operates a technology-enabled platform for selling and buying residential homes. The company offers three primary services: an all-cash offer purchase of homes; a traditional listing service with licensed local agents; and a hybrid option that pairs an upfront cash offer with potential additional proceeds after sale. Sellers can select a closing date (typically between 8 to 60 days) and in certain markets receive a complimentary local move (up to 80 miles) when selling directly to Offerpad. With an A+ BBB rating, nearly 72,000 transactions and $21B+ in volume since launch, Offerpad focuses on speed, certainty, and simple, transparent numbers for a best-in-class experience.",
+            "legalName": "Offerpad Solutions Inc.",
+            "foundingDate": "2015-06-01",
+            "numberOfEmployees": {
+              "@type": "QuantitativeValue",
+              "minValue": "201",
+              "maxValue": "500"
+            },
+            "address": {
+              "@id": "https://www.offerpad.com/category/articles/#local-main-place-address"
+            },
+            "telephone": [
+              "844.388.4539"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "email": "info@offerpad.com"
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Sunday",
+                  "Saturday"
+                ],
+                "opens": "00:00",
+                "closes": "00:00"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday"
+                ],
+                "opens": "07:00",
+                "closes": "17:00"
+              }
+            ],
+            "faxNumber": "Offerpad",
+            "areaServed": "United States"
+          },
+          {
+            "@type": "PostalAddress",
+            "@id": "https://www.offerpad.com/category/articles/#local-main-place-address",
+            "streetAddress": "433 S Farmer Ave Suite 500",
+            "addressLocality": "Tempe",
+            "postalCode": "85286",
+            "addressRegion": "Arizona",
+            "addressCountry": "US"
+          },
+          {
+            "@type": "ImageObject",
+            "inLanguage": "en-US",
+            "@id": "https://www.offerpad.com/category/articles/#local-main-organization-logo",
+            "url": "https://www.offerpad.com/wp-content/uploads/2025/08/offerpad-logo-square.png",
+            "contentUrl": "https://www.offerpad.com/wp-content/uploads/2025/08/offerpad-logo-square.png",
+            "width": 684,
+            "height": 683,
+            "caption": "Offerpad"
+          }
+        ]
+      },
+      "geo.placename": "Tempe",
+      "geo.region": "United States (US)"
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/categories/65",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/taxonomies/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/posts?categories=65"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 78,
+    "count": 2,
+    "description": "",
+    "link": "https://www.offerpad.com/category/feature/",
+    "name": "feature",
+    "slug": "feature",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.9 (Yoast SEO v28.1) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>feature Archives - Offerpad</title>\n<meta name=\"robots\" content=\"noindex, follow\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"feature Archives\" />\n<meta property=\"og:url\" content=\"https://www.offerpad.com/category/feature/\" />\n<meta property=\"og:site_name\" content=\"Offerpad\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@offerpad\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/feature\\/\",\"url\":\"https:\\/\\/www.offerpad.com\\/category\\/feature\\/\",\"name\":\"feature Archives - Offerpad\",\"isPartOf\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/feature\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/feature\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/www.offerpad.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"feature\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/www.offerpad.com\\/#website\",\"url\":\"https:\\/\\/www.offerpad.com\\/\",\"name\":\"Offerpad\",\"description\":\"The easiest way to buy and sell a home. Period. Get your cash offer today.\",\"publisher\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/www.offerpad.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":[\"Organization\",\"Place\"],\"@id\":\"https:\\/\\/www.offerpad.com\\/#organization\",\"name\":\"Offerpad\",\"url\":\"https:\\/\\/www.offerpad.com\\/\",\"logo\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/#local-main-organization-logo\"},\"image\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/#local-main-organization-logo\"},\"sameAs\":[\"https:\\/\\/www.facebook.com\\/Offerpad\\/\",\"https:\\/\\/x.com\\/offerpad\",\"https:\\/\\/www.linkedin.com\\/company\\/offerpad\",\"https:\\/\\/instagram.com\\/offerpad\"],\"description\":\"Offerpad (NYSE: OPAD) is an American real estate company founded in 2015 that operates a technology-enabled platform for selling and buying residential homes. The company offers three primary services: an all-cash offer purchase of homes; a traditional listing service with licensed local agents; and a hybrid option that pairs an upfront cash offer with potential additional proceeds after sale. Sellers can select a closing date (typically between 8 to 60 days) and in certain markets receive a complimentary local move (up to 80 miles) when selling directly to Offerpad. With an A+ BBB rating, nearly 72,000 transactions and $21B+ in volume since launch, Offerpad focuses on speed, certainty, and simple, transparent numbers for a best-in-class experience.\",\"legalName\":\"Offerpad Solutions Inc.\",\"foundingDate\":\"2015-06-01\",\"numberOfEmployees\":{\"@type\":\"QuantitativeValue\",\"minValue\":\"201\",\"maxValue\":\"500\"},\"address\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/#local-main-place-address\"},\"telephone\":[\"844.388.4539\"],\"contactPoint\":{\"@type\":\"ContactPoint\",\"email\":\"info@offerpad.com\"},\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Sunday\",\"Saturday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\"],\"opens\":\"07:00\",\"closes\":\"17:00\"}],\"faxNumber\":\"Offerpad\",\"areaServed\":\"United States\"},{\"@type\":\"PostalAddress\",\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/feature\\/#local-main-place-address\",\"streetAddress\":\"433 S Farmer Ave Suite 500\",\"addressLocality\":\"Tempe\",\"postalCode\":\"85286\",\"addressRegion\":\"Arizona\",\"addressCountry\":\"US\"},{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/feature\\/#local-main-organization-logo\",\"url\":\"https:\\/\\/www.offerpad.com\\/wp-content\\/uploads\\/2025\\/08\\/offerpad-logo-square.png\",\"contentUrl\":\"https:\\/\\/www.offerpad.com\\/wp-content\\/uploads\\/2025\\/08\\/offerpad-logo-square.png\",\"width\":684,\"height\":683,\"caption\":\"Offerpad\"}]}</script>\n<meta name=\"geo.placename\" content=\"Tempe\" />\n<meta name=\"geo.region\" content=\"United States (US)\" />\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "feature Archives - Offerpad",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "feature Archives",
+      "og_url": "https://www.offerpad.com/category/feature/",
+      "og_site_name": "Offerpad",
+      "twitter_card": "summary_large_image",
+      "twitter_site": "@offerpad",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://www.offerpad.com/category/feature/",
+            "url": "https://www.offerpad.com/category/feature/",
+            "name": "feature Archives - Offerpad",
+            "isPartOf": {
+              "@id": "https://www.offerpad.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://www.offerpad.com/category/feature/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://www.offerpad.com/category/feature/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.offerpad.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "feature"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.offerpad.com/#website",
+            "url": "https://www.offerpad.com/",
+            "name": "Offerpad",
+            "description": "The easiest way to buy and sell a home. Period. Get your cash offer today.",
+            "publisher": {
+              "@id": "https://www.offerpad.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://www.offerpad.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": [
+              "Organization",
+              "Place"
+            ],
+            "@id": "https://www.offerpad.com/#organization",
+            "name": "Offerpad",
+            "url": "https://www.offerpad.com/",
+            "logo": {
+              "@id": "https://www.offerpad.com/category/articles/#local-main-organization-logo"
+            },
+            "image": {
+              "@id": "https://www.offerpad.com/category/articles/#local-main-organization-logo"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Offerpad/",
+              "https://x.com/offerpad",
+              "https://www.linkedin.com/company/offerpad",
+              "https://instagram.com/offerpad"
+            ],
+            "description": "Offerpad (NYSE: OPAD) is an American real estate company founded in 2015 that operates a technology-enabled platform for selling and buying residential homes. The company offers three primary services: an all-cash offer purchase of homes; a traditional listing service with licensed local agents; and a hybrid option that pairs an upfront cash offer with potential additional proceeds after sale. Sellers can select a closing date (typically between 8 to 60 days) and in certain markets receive a complimentary local move (up to 80 miles) when selling directly to Offerpad. With an A+ BBB rating, nearly 72,000 transactions and $21B+ in volume since launch, Offerpad focuses on speed, certainty, and simple, transparent numbers for a best-in-class experience.",
+            "legalName": "Offerpad Solutions Inc.",
+            "foundingDate": "2015-06-01",
+            "numberOfEmployees": {
+              "@type": "QuantitativeValue",
+              "minValue": "201",
+              "maxValue": "500"
+            },
+            "address": {
+              "@id": "https://www.offerpad.com/category/articles/#local-main-place-address"
+            },
+            "telephone": [
+              "844.388.4539"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "email": "info@offerpad.com"
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Sunday",
+                  "Saturday"
+                ],
+                "opens": "00:00",
+                "closes": "00:00"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday"
+                ],
+                "opens": "07:00",
+                "closes": "17:00"
+              }
+            ],
+            "faxNumber": "Offerpad",
+            "areaServed": "United States"
+          },
+          {
+            "@type": "PostalAddress",
+            "@id": "https://www.offerpad.com/category/feature/#local-main-place-address",
+            "streetAddress": "433 S Farmer Ave Suite 500",
+            "addressLocality": "Tempe",
+            "postalCode": "85286",
+            "addressRegion": "Arizona",
+            "addressCountry": "US"
+          },
+          {
+            "@type": "ImageObject",
+            "inLanguage": "en-US",
+            "@id": "https://www.offerpad.com/category/feature/#local-main-organization-logo",
+            "url": "https://www.offerpad.com/wp-content/uploads/2025/08/offerpad-logo-square.png",
+            "contentUrl": "https://www.offerpad.com/wp-content/uploads/2025/08/offerpad-logo-square.png",
+            "width": 684,
+            "height": 683,
+            "caption": "Offerpad"
+          }
+        ]
+      },
+      "geo.placename": "Tempe",
+      "geo.region": "United States (US)"
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/categories/78",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/taxonomies/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/posts?categories=78"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 66,
+    "count": 141,
+    "description": "",
+    "link": "https://www.offerpad.com/category/press/",
+    "name": "press",
+    "slug": "press",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.9 (Yoast SEO v28.1) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>press Archives - Offerpad</title>\n<meta name=\"robots\" content=\"noindex, follow\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"press Archives\" />\n<meta property=\"og:url\" content=\"https://www.offerpad.com/category/press/\" />\n<meta property=\"og:site_name\" content=\"Offerpad\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@offerpad\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/press\\/\",\"url\":\"https:\\/\\/www.offerpad.com\\/category\\/press\\/\",\"name\":\"press Archives - Offerpad\",\"isPartOf\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/press\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/press\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/www.offerpad.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"press\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/www.offerpad.com\\/#website\",\"url\":\"https:\\/\\/www.offerpad.com\\/\",\"name\":\"Offerpad\",\"description\":\"The easiest way to buy and sell a home. Period. Get your cash offer today.\",\"publisher\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/www.offerpad.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":[\"Organization\",\"Place\"],\"@id\":\"https:\\/\\/www.offerpad.com\\/#organization\",\"name\":\"Offerpad\",\"url\":\"https:\\/\\/www.offerpad.com\\/\",\"logo\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/#local-main-organization-logo\"},\"image\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/#local-main-organization-logo\"},\"sameAs\":[\"https:\\/\\/www.facebook.com\\/Offerpad\\/\",\"https:\\/\\/x.com\\/offerpad\",\"https:\\/\\/www.linkedin.com\\/company\\/offerpad\",\"https:\\/\\/instagram.com\\/offerpad\"],\"description\":\"Offerpad (NYSE: OPAD) is an American real estate company founded in 2015 that operates a technology-enabled platform for selling and buying residential homes. The company offers three primary services: an all-cash offer purchase of homes; a traditional listing service with licensed local agents; and a hybrid option that pairs an upfront cash offer with potential additional proceeds after sale. Sellers can select a closing date (typically between 8 to 60 days) and in certain markets receive a complimentary local move (up to 80 miles) when selling directly to Offerpad. With an A+ BBB rating, nearly 72,000 transactions and $21B+ in volume since launch, Offerpad focuses on speed, certainty, and simple, transparent numbers for a best-in-class experience.\",\"legalName\":\"Offerpad Solutions Inc.\",\"foundingDate\":\"2015-06-01\",\"numberOfEmployees\":{\"@type\":\"QuantitativeValue\",\"minValue\":\"201\",\"maxValue\":\"500\"},\"address\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/#local-main-place-address\"},\"telephone\":[\"844.388.4539\"],\"contactPoint\":{\"@type\":\"ContactPoint\",\"email\":\"info@offerpad.com\"},\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Sunday\",\"Saturday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\"],\"opens\":\"07:00\",\"closes\":\"17:00\"}],\"faxNumber\":\"Offerpad\",\"areaServed\":\"United States\"},{\"@type\":\"PostalAddress\",\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/press\\/#local-main-place-address\",\"streetAddress\":\"433 S Farmer Ave Suite 500\",\"addressLocality\":\"Tempe\",\"postalCode\":\"85286\",\"addressRegion\":\"Arizona\",\"addressCountry\":\"US\"},{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/press\\/#local-main-organization-logo\",\"url\":\"https:\\/\\/www.offerpad.com\\/wp-content\\/uploads\\/2025\\/08\\/offerpad-logo-square.png\",\"contentUrl\":\"https:\\/\\/www.offerpad.com\\/wp-content\\/uploads\\/2025\\/08\\/offerpad-logo-square.png\",\"width\":684,\"height\":683,\"caption\":\"Offerpad\"}]}</script>\n<meta name=\"geo.placename\" content=\"Tempe\" />\n<meta name=\"geo.region\" content=\"United States (US)\" />\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "press Archives - Offerpad",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "press Archives",
+      "og_url": "https://www.offerpad.com/category/press/",
+      "og_site_name": "Offerpad",
+      "twitter_card": "summary_large_image",
+      "twitter_site": "@offerpad",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://www.offerpad.com/category/press/",
+            "url": "https://www.offerpad.com/category/press/",
+            "name": "press Archives - Offerpad",
+            "isPartOf": {
+              "@id": "https://www.offerpad.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://www.offerpad.com/category/press/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://www.offerpad.com/category/press/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.offerpad.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "press"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.offerpad.com/#website",
+            "url": "https://www.offerpad.com/",
+            "name": "Offerpad",
+            "description": "The easiest way to buy and sell a home. Period. Get your cash offer today.",
+            "publisher": {
+              "@id": "https://www.offerpad.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://www.offerpad.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": [
+              "Organization",
+              "Place"
+            ],
+            "@id": "https://www.offerpad.com/#organization",
+            "name": "Offerpad",
+            "url": "https://www.offerpad.com/",
+            "logo": {
+              "@id": "https://www.offerpad.com/category/articles/#local-main-organization-logo"
+            },
+            "image": {
+              "@id": "https://www.offerpad.com/category/articles/#local-main-organization-logo"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Offerpad/",
+              "https://x.com/offerpad",
+              "https://www.linkedin.com/company/offerpad",
+              "https://instagram.com/offerpad"
+            ],
+            "description": "Offerpad (NYSE: OPAD) is an American real estate company founded in 2015 that operates a technology-enabled platform for selling and buying residential homes. The company offers three primary services: an all-cash offer purchase of homes; a traditional listing service with licensed local agents; and a hybrid option that pairs an upfront cash offer with potential additional proceeds after sale. Sellers can select a closing date (typically between 8 to 60 days) and in certain markets receive a complimentary local move (up to 80 miles) when selling directly to Offerpad. With an A+ BBB rating, nearly 72,000 transactions and $21B+ in volume since launch, Offerpad focuses on speed, certainty, and simple, transparent numbers for a best-in-class experience.",
+            "legalName": "Offerpad Solutions Inc.",
+            "foundingDate": "2015-06-01",
+            "numberOfEmployees": {
+              "@type": "QuantitativeValue",
+              "minValue": "201",
+              "maxValue": "500"
+            },
+            "address": {
+              "@id": "https://www.offerpad.com/category/articles/#local-main-place-address"
+            },
+            "telephone": [
+              "844.388.4539"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "email": "info@offerpad.com"
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Sunday",
+                  "Saturday"
+                ],
+                "opens": "00:00",
+                "closes": "00:00"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday"
+                ],
+                "opens": "07:00",
+                "closes": "17:00"
+              }
+            ],
+            "faxNumber": "Offerpad",
+            "areaServed": "United States"
+          },
+          {
+            "@type": "PostalAddress",
+            "@id": "https://www.offerpad.com/category/press/#local-main-place-address",
+            "streetAddress": "433 S Farmer Ave Suite 500",
+            "addressLocality": "Tempe",
+            "postalCode": "85286",
+            "addressRegion": "Arizona",
+            "addressCountry": "US"
+          },
+          {
+            "@type": "ImageObject",
+            "inLanguage": "en-US",
+            "@id": "https://www.offerpad.com/category/press/#local-main-organization-logo",
+            "url": "https://www.offerpad.com/wp-content/uploads/2025/08/offerpad-logo-square.png",
+            "contentUrl": "https://www.offerpad.com/wp-content/uploads/2025/08/offerpad-logo-square.png",
+            "width": 684,
+            "height": 683,
+            "caption": "Offerpad"
+          }
+        ]
+      },
+      "geo.placename": "Tempe",
+      "geo.region": "United States (US)"
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/categories/66",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/taxonomies/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/posts?categories=66"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 1,
+    "count": 0,
+    "description": "",
+    "link": "https://www.offerpad.com/category/uncategorized/",
+    "name": "Uncategorized",
+    "slug": "uncategorized",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "acf": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.9 (Yoast SEO v28.1) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Uncategorized Archives - Offerpad</title>\n<meta name=\"robots\" content=\"noindex, follow\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Uncategorized Archives\" />\n<meta property=\"og:url\" content=\"https://www.offerpad.com/category/uncategorized/\" />\n<meta property=\"og:site_name\" content=\"Offerpad\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@offerpad\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/uncategorized\\/\",\"url\":\"https:\\/\\/www.offerpad.com\\/category\\/uncategorized\\/\",\"name\":\"Uncategorized Archives - Offerpad\",\"isPartOf\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/uncategorized\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/uncategorized\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/www.offerpad.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Uncategorized\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/www.offerpad.com\\/#website\",\"url\":\"https:\\/\\/www.offerpad.com\\/\",\"name\":\"Offerpad\",\"description\":\"The easiest way to buy and sell a home. Period. Get your cash offer today.\",\"publisher\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/www.offerpad.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":[\"Organization\",\"Place\"],\"@id\":\"https:\\/\\/www.offerpad.com\\/#organization\",\"name\":\"Offerpad\",\"url\":\"https:\\/\\/www.offerpad.com\\/\",\"logo\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/#local-main-organization-logo\"},\"image\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/#local-main-organization-logo\"},\"sameAs\":[\"https:\\/\\/www.facebook.com\\/Offerpad\\/\",\"https:\\/\\/x.com\\/offerpad\",\"https:\\/\\/www.linkedin.com\\/company\\/offerpad\",\"https:\\/\\/instagram.com\\/offerpad\"],\"description\":\"Offerpad (NYSE: OPAD) is an American real estate company founded in 2015 that operates a technology-enabled platform for selling and buying residential homes. The company offers three primary services: an all-cash offer purchase of homes; a traditional listing service with licensed local agents; and a hybrid option that pairs an upfront cash offer with potential additional proceeds after sale. Sellers can select a closing date (typically between 8 to 60 days) and in certain markets receive a complimentary local move (up to 80 miles) when selling directly to Offerpad. With an A+ BBB rating, nearly 72,000 transactions and $21B+ in volume since launch, Offerpad focuses on speed, certainty, and simple, transparent numbers for a best-in-class experience.\",\"legalName\":\"Offerpad Solutions Inc.\",\"foundingDate\":\"2015-06-01\",\"numberOfEmployees\":{\"@type\":\"QuantitativeValue\",\"minValue\":\"201\",\"maxValue\":\"500\"},\"address\":{\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/articles\\/#local-main-place-address\"},\"telephone\":[\"844.388.4539\"],\"contactPoint\":{\"@type\":\"ContactPoint\",\"email\":\"info@offerpad.com\"},\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Sunday\",\"Saturday\"],\"opens\":\"00:00\",\"closes\":\"00:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\"],\"opens\":\"07:00\",\"closes\":\"17:00\"}],\"faxNumber\":\"Offerpad\",\"areaServed\":\"United States\"},{\"@type\":\"PostalAddress\",\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/uncategorized\\/#local-main-place-address\",\"streetAddress\":\"433 S Farmer Ave Suite 500\",\"addressLocality\":\"Tempe\",\"postalCode\":\"85286\",\"addressRegion\":\"Arizona\",\"addressCountry\":\"US\"},{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/www.offerpad.com\\/category\\/uncategorized\\/#local-main-organization-logo\",\"url\":\"https:\\/\\/www.offerpad.com\\/wp-content\\/uploads\\/2025\\/08\\/offerpad-logo-square.png\",\"contentUrl\":\"https:\\/\\/www.offerpad.com\\/wp-content\\/uploads\\/2025\\/08\\/offerpad-logo-square.png\",\"width\":684,\"height\":683,\"caption\":\"Offerpad\"}]}</script>\n<meta name=\"geo.placename\" content=\"Tempe\" />\n<meta name=\"geo.region\" content=\"United States (US)\" />\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Uncategorized Archives - Offerpad",
+      "robots": {
+        "index": "noindex",
+        "follow": "follow"
+      },
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Uncategorized Archives",
+      "og_url": "https://www.offerpad.com/category/uncategorized/",
+      "og_site_name": "Offerpad",
+      "twitter_card": "summary_large_image",
+      "twitter_site": "@offerpad",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://www.offerpad.com/category/uncategorized/",
+            "url": "https://www.offerpad.com/category/uncategorized/",
+            "name": "Uncategorized Archives - Offerpad",
+            "isPartOf": {
+              "@id": "https://www.offerpad.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://www.offerpad.com/category/uncategorized/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://www.offerpad.com/category/uncategorized/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.offerpad.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Uncategorized"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.offerpad.com/#website",
+            "url": "https://www.offerpad.com/",
+            "name": "Offerpad",
+            "description": "The easiest way to buy and sell a home. Period. Get your cash offer today.",
+            "publisher": {
+              "@id": "https://www.offerpad.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://www.offerpad.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": [
+              "Organization",
+              "Place"
+            ],
+            "@id": "https://www.offerpad.com/#organization",
+            "name": "Offerpad",
+            "url": "https://www.offerpad.com/",
+            "logo": {
+              "@id": "https://www.offerpad.com/category/articles/#local-main-organization-logo"
+            },
+            "image": {
+              "@id": "https://www.offerpad.com/category/articles/#local-main-organization-logo"
+            },
+            "sameAs": [
+              "https://www.facebook.com/Offerpad/",
+              "https://x.com/offerpad",
+              "https://www.linkedin.com/company/offerpad",
+              "https://instagram.com/offerpad"
+            ],
+            "description": "Offerpad (NYSE: OPAD) is an American real estate company founded in 2015 that operates a technology-enabled platform for selling and buying residential homes. The company offers three primary services: an all-cash offer purchase of homes; a traditional listing service with licensed local agents; and a hybrid option that pairs an upfront cash offer with potential additional proceeds after sale. Sellers can select a closing date (typically between 8 to 60 days) and in certain markets receive a complimentary local move (up to 80 miles) when selling directly to Offerpad. With an A+ BBB rating, nearly 72,000 transactions and $21B+ in volume since launch, Offerpad focuses on speed, certainty, and simple, transparent numbers for a best-in-class experience.",
+            "legalName": "Offerpad Solutions Inc.",
+            "foundingDate": "2015-06-01",
+            "numberOfEmployees": {
+              "@type": "QuantitativeValue",
+              "minValue": "201",
+              "maxValue": "500"
+            },
+            "address": {
+              "@id": "https://www.offerpad.com/category/articles/#local-main-place-address"
+            },
+            "telephone": [
+              "844.388.4539"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "email": "info@offerpad.com"
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Sunday",
+                  "Saturday"
+                ],
+                "opens": "00:00",
+                "closes": "00:00"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday"
+                ],
+                "opens": "07:00",
+                "closes": "17:00"
+              }
+            ],
+            "faxNumber": "Offerpad",
+            "areaServed": "United States"
+          },
+          {
+            "@type": "PostalAddress",
+            "@id": "https://www.offerpad.com/category/uncategorized/#local-main-place-address",
+            "streetAddress": "433 S Farmer Ave Suite 500",
+            "addressLocality": "Tempe",
+            "postalCode": "85286",
+            "addressRegion": "Arizona",
+            "addressCountry": "US"
+          },
+          {
+            "@type": "ImageObject",
+            "inLanguage": "en-US",
+            "@id": "https://www.offerpad.com/category/uncategorized/#local-main-organization-logo",
+            "url": "https://www.offerpad.com/wp-content/uploads/2025/08/offerpad-logo-square.png",
+            "contentUrl": "https://www.offerpad.com/wp-content/uploads/2025/08/offerpad-logo-square.png",
+            "width": 684,
+            "height": 683,
+            "caption": "Offerpad"
+          }
+        ]
+      },
+      "geo.placename": "Tempe",
+      "geo.region": "United States (US)"
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/categories/1",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/taxonomies/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://www.offerpad.com/wp-json/wp/v2/posts?categories=1"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

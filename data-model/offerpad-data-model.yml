@@ -1,0 +1,173 @@
+generated: '2026-07-26'
+method: derived
+source: >-
+  openapi/offerpad-wordpress-wp-v2-openapi.yml and openapi/offerpad-wp-json-discovery.json,
+  cross-checked against real payloads in examples/
+scope: >-
+  Entity-relationship graph of the only publicly callable Offerpad API. Every entity and every
+  relationship below is derived from an id-reference parameter that the live route discovery
+  document declares, or from an _links relation observed in a captured response. This is the
+  content model of the marketing site — there is no public Offerpad model for a property,
+  an offer, a contract or a transaction.
+id_style:
+  type: integer
+  note: 'WordPress uses opaque incrementing integer ids; there are no typed id prefixes.'
+entities:
+  - name: post
+    collection: /wp/v2/posts
+    operations: [listPosts, createPosts, getPostsById, deletePostsById]
+    live_count: 471
+    description: Offerpad articles published at https://www.offerpad.com/articles/.
+  - name: page
+    collection: /wp/v2/pages
+    operations: [listPages, createPages, getPagesById, deletePagesById]
+    description: Marketing pages including /sell/, /buy/, /agents/, /faq/ and the per-city landing pages.
+  - name: media
+    collection: /wp/v2/media
+    operations: [listMedia, createMedia, getMediaById, deleteMediaById]
+    description: Uploaded images and documents.
+  - name: comment
+    collection: /wp/v2/comments
+    operations: [listComments, createComments, getCommentsById, deleteCommentsById]
+  - name: category
+    collection: /wp/v2/categories
+    operations: [listCategories, createCategories, getCategoriesById, deleteCategoriesById]
+  - name: tag
+    collection: /wp/v2/tags
+    operations: [listTags, createTags, getTagsById, deleteTagsById]
+  - name: user
+    collection: /wp/v2/users
+    operations: [listUsers, createUsers, getUsersById, deleteUsersById]
+    note: Anonymous callers see only authors with published posts.
+  - name: menu
+    collection: /wp/v2/menus
+  - name: menu-item
+    collection: /wp/v2/menu-items
+  - name: taxonomy
+    collection: /wp/v2/taxonomies
+  - name: type
+    collection: /wp/v2/types
+    description: Registered post types; captured live in examples/offerpad-wp-v2-types-response.json.
+  - name: status
+    collection: /wp/v2/statuses
+  - name: template
+    collection: /wp/v2/templates
+  - name: block
+    collection: /wp/v2/blocks
+  - name: revision
+    collection: /wp/v2/{type}/{parent}/revisions
+    description: Immutable prior versions of a post, page, block or template.
+  - name: autosave
+    collection: /wp/v2/{type}/{id}/autosaves
+relationships:
+  - from: post
+    to: user
+    kind: belongs_to
+    via: author
+    evidence: 'args.author on POST /wp/v2/posts and GET filter author/author_exclude'
+  - from: post
+    to: media
+    kind: has_one
+    via: featured_media
+    evidence: args.featured_media on POST /wp/v2/posts
+  - from: post
+    to: category
+    kind: has_many
+    via: categories
+    evidence: 'args.categories on POST /wp/v2/posts; GET filters categories/categories_exclude'
+  - from: post
+    to: tag
+    kind: has_many
+    via: tags
+    evidence: 'args.tags on POST /wp/v2/posts; GET filters tags/tags_exclude'
+  - from: post
+    to: revision
+    kind: has_many
+    via: parent
+    evidence: route /wp/v2/posts/{parent}/revisions
+  - from: post
+    to: autosave
+    kind: has_many
+    via: id
+    evidence: route /wp/v2/posts/{id}/autosaves
+  - from: page
+    to: page
+    kind: belongs_to
+    via: parent
+    evidence: 'args.parent on POST /wp/v2/pages; GET filters parent/parent_exclude'
+  - from: page
+    to: user
+    kind: belongs_to
+    via: author
+    evidence: args.author on POST /wp/v2/pages
+  - from: page
+    to: media
+    kind: has_one
+    via: featured_media
+    evidence: args.featured_media on POST /wp/v2/pages
+  - from: media
+    to: post
+    kind: belongs_to
+    via: post
+    evidence: args.post on POST /wp/v2/media
+  - from: media
+    to: user
+    kind: belongs_to
+    via: author
+    evidence: args.author on POST /wp/v2/media
+  - from: comment
+    to: post
+    kind: belongs_to
+    via: post
+    evidence: 'args.post on POST /wp/v2/comments; GET filter post'
+  - from: comment
+    to: user
+    kind: belongs_to
+    via: author
+    evidence: args.author on POST /wp/v2/comments
+  - from: comment
+    to: comment
+    kind: belongs_to
+    via: parent
+    evidence: args.parent on POST /wp/v2/comments
+  - from: category
+    to: category
+    kind: belongs_to
+    via: parent
+    evidence: args.parent on POST /wp/v2/categories
+  - from: category
+    to: post
+    kind: has_many
+    via: post
+    evidence: GET filter post on /wp/v2/categories
+  - from: tag
+    to: post
+    kind: has_many
+    via: post
+    evidence: GET filter post on /wp/v2/tags
+  - from: menu-item
+    to: menu
+    kind: belongs_to
+    via: menus
+    evidence: 'args.menus on POST /wp/v2/menu-items; GET filters menus/menus_exclude'
+  - from: menu-item
+    to: menu-item
+    kind: belongs_to
+    via: parent
+    evidence: args.parent on POST /wp/v2/menu-items
+  - from: menu-item
+    to: post
+    kind: references
+    via: object_id
+    evidence: 'args.object + args.object_id on POST /wp/v2/menu-items'
+hateoas:
+  note: >-
+    Every resource carries an _links object with self, collection, about, author,
+    wp:featuredmedia, wp:attachment, wp:term and replies relations; _embed expands them into
+    _embedded. Confirmed in examples/offerpad-wp-v2-posts-response.json.
+absent:
+  note: >-
+    No property, listing, offer, valuation, contract, escrow, renovation or transaction entity
+    is exposed on any public Offerpad surface. The private helix backend implies such entities
+    (cash-offer-transactions, contracts, documents, forms, offers) but publishes no schema —
+    see helix/offerpad-helix-observed-endpoints.yml.
