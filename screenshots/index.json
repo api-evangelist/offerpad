@@ -1,0 +1,19 @@
+[
+  {
+    "repo": "offerpad",
+    "captured_at": "2026-08-07T190021",
+    "source_url": "https://connect.offerpad.com/auth/login",
+    "source_type": "Portal",
+    "file": "offerpad-2026-08-07T190021.png",
+    "bytes": 497098
+  },
+  {
+    "repo": "offerpad",
+    "captured_at": "2026-08-17T124240",
+    "source_url": "https://offerpad.com",
+    "source_type": "root-domain",
+    "file": "offerpad-2026-08-17T124240.png",
+    "bytes": 1156789,
+    "capture": "playwright-local"
+  }
+]
