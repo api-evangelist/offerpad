@@ -43,6 +43,17 @@ accessModel:
   method: probed
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
+  - Real-Estate
+  - United States
+  - iBuyer
+  - PropTech
+  - Property Listings
+  - Brokerage
+  - MLS
+  - Cash Offer
+  - Renovation
+  - Home Buying
+tags_raw:
   - Real Estate
   - United States
   - iBuyer
@@ -119,6 +130,12 @@ apis:
     humanURL: https://connect.offerpad.com/auth/login
     baseURL: https://helix.offerpad.com
     tags:
+      - Private API
+      - iBuyer
+      - Real-Estate
+      - Transaction
+      - Undocumented
+    tags_raw:
       - Private API
       - iBuyer
       - Real Estate
