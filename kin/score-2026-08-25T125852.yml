@@ -1,0 +1,66 @@
+# Kin Score artifact — offerpad — 2026-08-25T125852
+# The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
+---
+kin_score:
+  slug: offerpad
+  schema_version: 0.14.0
+  scored_at: '2026-08-25'
+  run_ts: 2026-08-25T125852
+  composite: 35.1
+  band: thin
+  facets:
+    discoverability: 87.0
+    contract_quality: 16.7
+    governance: 30.3
+    operational_transparency: 5.3
+    developer_ergonomics: 30.4
+    commercial_clarity: 34.2
+    contract_governance: 30.3
+    access_clarity: 34.2
+  agent_readiness:
+    score: 34.7
+    band: agent-ready
+    dimensions:
+      spec_presence: true
+      agentic_access: derived
+      reversibility_documented: false
+      mcp_server: false
+      auth_clarity: served
+      idempotency: false
+      error_semantics: verified
+      openapi_examples: partial
+      rate_limit_signal: false
+      event_surface_described: false
+      agent_skills: derived
+      well_known_catalog: false
+      consent_identity: false
+      agent_card: false
+      dry_run_mode: false
+      delegated_identity: served
+      protected_resource_metadata: false
+      dynamic_client_registration: false
+      agentic_commerce: false
+  regulatory:
+    applies: true
+    regime: Securities & Market Data
+    regime_id: securities_market_data
+    score: 68.3
+    matched_via: weak_tags
+  needs_work:
+    owner: catalog
+    reasons:
+    - owner: catalog
+      reason: no_resolvable_host
+    detected: '2026-08-18'
+    note: Recorded so this provider's gaps can be attributed. Does not affect the
+      composite.
+  provenance:
+    mcp: derived
+    skills: derived
+    agentic_access: derived
+    conformance: first-party
+    contracts:
+      total: 1
+      derived: 1
+      coverage: 100.0
+      callable: 100.0
