@@ -68,93 +68,788 @@ created: '2026-07-26'
 modified: '2026-07-26'
 specificationVersion: '0.23'
 apis:
-  - aid: offerpad:offerpad-wordpress-rest-api
-    name: Offerpad WordPress REST API
-    description: >-
-      The stock WordPress REST API served by Offerpad's WP Engine-hosted
-      marketing site at https://www.offerpad.com/wp-json/. Confirmed live and
-      anonymously readable on 2026-07-26 (HTTP 200, application/json, 387,532
-      bytes), the root discovery document self-describes 411 routes across 20
-      namespaces including wp/v2, yoast/v1, gf/v2 (Gravity Forms),
-      redirection/v1 and elementor/v1, and advertises WordPress application
-      passwords as its authentication scheme. This is a content-management
-      surface for pages, posts, media and site metadata — it is NOT a real
-      estate, listing, valuation or transaction API, and Offerpad does not
-      document or support it as a developer product. It is catalogued here
-      because it is the only publicly callable, machine-describable API found
-      on any Offerpad host.
-    humanURL: https://developer.wordpress.org/rest-api/
-    baseURL: https://www.offerpad.com/wp-json
-    tags:
-      - CMS
-      - Content
-      - WordPress
-      - Marketing Site
-    properties:
-      - type: OpenAPI
-        name: >-
-          Offerpad WordPress REST API (wp/v2) — derived by API Evangelist from the live route
-          discovery document; Offerpad publishes no OpenAPI
-        url: openapi/offerpad-wordpress-wp-v2-openapi.yml
-      - type: Discovery
-        name: WordPress route discovery document, saved verbatim (411 routes, 20 namespaces)
-        url: openapi/offerpad-wp-json-discovery.json
-      - type: Overlay
-        name: API Evangelist enhancements overlay
-        url: overlays/offerpad-wordpress-wp-v2-overlay.yaml
-      - type: Examples
-        name: Real captured responses from the live API
-        url: examples/_index.yml
-      - type: DataModel
-        name: Entity-relationship graph derived from the route discovery document
-        url: data-model/offerpad-data-model.yml
-      - type: Documentation
-        name: Upstream WordPress REST API handbook (Offerpad publishes none of its own)
-        url: https://developer.wordpress.org/rest-api/
-  - aid: offerpad:offerpad-helix-api
-    name: Offerpad Helix API (private customer backend)
-    description: >-
-      Offerpad's real transaction API, and it is closed. Discovered on 2026-07-26 as the API_URL
-      constant compiled into the Offerpad Connect single-page-app bundle at
-      https://connect.offerpad.com/bundle.js, the host at https://helix.offerpad.com serves the
-      customer identity, cash-offer transaction, contract, document, form and device endpoints
-      that the Offerpad Connect web portal and the Offerpad mobile apps call. It is entirely
-      undocumented: there is no developer portal, no reference, no schema and no public client
-      registration, and every path except /.well-known/oauth-authorization-server returns
-      {"statusCode":404,"message":"Resource not found"} to an anonymous caller. That one live
-      discovery document is a conformant RFC 8414 authorization-server metadata document
-      delegating to an Okta custom authorization server, which is why Offerpad's identity layer
-      is machine-discoverable while none of its business capability is. Catalogued as evidence
-      that the capability exists and is deliberately closed, not absent — the observed endpoint
-      inventory is recorded verbatim from the first-party client with no schemas inferred.
-    humanURL: https://connect.offerpad.com/auth/login
-    baseURL: https://helix.offerpad.com
-    tags:
-      - Private API
-      - iBuyer
-      - Real-Estate
-      - Transaction
-      - Undocumented
-    tags_raw:
-      - Private API
-      - iBuyer
-      - Real Estate
-      - Transactions
-      - Undocumented
-    properties:
-      - type: EndpointInventory
-        name: Observed endpoints, recorded from the first-party client bundle
-        url: helix/offerpad-helix-observed-endpoints.yml
-      - type: WellKnown
-        name: RFC 8414 authorization server metadata (live, anonymous)
-        url: well-known/offerpad-helix-oauth-authorization-server.json
-      - type: Authentication
-        name: Auth profile for both Offerpad API surfaces
-        url: authentication/offerpad-authentication.yml
-      - type: Portal
-        name: Offerpad Connect (the client for this backend)
-        url: https://connect.offerpad.com/auth/login
+- aid: offerpad:offerpad-helix-api
+  name: Offerpad Helix API (private customer backend)
+  description: >-
+    Offerpad's real transaction API, and it is closed. Discovered on 2026-07-26 as the API_URL constant
+    compiled into the Offerpad Connect single-page-app bundle at https://connect.offerpad.com/bundle.js,
+    the host at https://helix.offerpad.com serves the customer identity, cash-offer transaction, contract,
+    document, form and device endpoints that the Offerpad Connect web portal and the Offerpad mobile apps
+    call. It is entirely undocumented: there is no developer portal, no reference, no schema and no public
+    client registration, and every path except /.well-known/oauth-authorization-server returns {"statusCode":404,"message":"Resource
+    not found"} to an anonymous caller. That one live discovery document is a conformant RFC 8414 authorization-server
+    metadata document delegating to an Okta custom authorization server, which is why Offerpad's identity
+    layer is machine-discoverable while none of its business capability is. Catalogued as evidence that
+    the capability exists and is deliberately closed, not absent — the observed endpoint inventory is
+    recorded verbatim from the first-party client with no schemas inferred.
+  humanURL: https://connect.offerpad.com/auth/login
+  baseURL: https://helix.offerpad.com
+  tags:
+  - Private API
+  - iBuyer
+  - Real-Estate
+  - Transaction
+  - Undocumented
+  tags_raw:
+  - Private API
+  - iBuyer
+  - Real Estate
+  - Transactions
+  - Undocumented
+  properties:
+  - type: EndpointInventory
+    name: Observed endpoints, recorded from the first-party client bundle
+    url: helix/offerpad-helix-observed-endpoints.yml
+  - type: WellKnown
+    name: RFC 8414 authorization server metadata (live, anonymous)
+    url: well-known/offerpad-helix-oauth-authorization-server.json
+  - type: Authentication
+    name: Auth profile for both Offerpad API surfaces
+    url: authentication/offerpad-authentication.yml
+  - type: Portal
+    name: Offerpad Connect (the client for this backend)
+    url: https://connect.offerpad.com/auth/login
+- aid: offerpad:offerpad-block-directory-api
+  name: Offerpad Block Directory API
+  description: WordPress block-directory resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - block-directory
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-block-directory-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-block-patterns-api
+  name: Offerpad Block Patterns API
+  description: WordPress block-patterns resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - block-patterns
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-block-patterns-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-block-renderer-api
+  name: Offerpad Block Renderer API
+  description: WordPress block-renderer resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - block-renderer
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-block-renderer-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-block-types-api
+  name: Offerpad Block Types API
+  description: WordPress block-types resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - block-types
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-block-types-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-blocks-api
+  name: Offerpad Blocks API
+  description: WordPress blocks resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - blocks
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-blocks-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-categories-api
+  name: Offerpad Categories API
+  description: WordPress categories resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - categories
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-categories-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-comments-api
+  name: Offerpad Comments API
+  description: WordPress comments resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - comments
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-comments-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-e-floating-buttons-api
+  name: Offerpad E Floating Buttons API
+  description: WordPress e-floating-buttons resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - e-floating-buttons
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-e-floating-buttons-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-elementor-library-api
+  name: Offerpad Elementor Library API
+  description: WordPress elementor_library resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - elementor_library
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-elementor-library-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-elementor-snippet-api
+  name: Offerpad Elementor Snippet API
+  description: WordPress elementor_snippet resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - elementor_snippet
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-elementor-snippet-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-font-collections-api
+  name: Offerpad Font Collections API
+  description: WordPress font-collections resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - font-collections
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-font-collections-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-font-families-api
+  name: Offerpad Font Families API
+  description: WordPress font-families resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - font-families
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-font-families-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-global-styles-api
+  name: Offerpad Global Styles API
+  description: WordPress global-styles resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - global-styles
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-global-styles-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-icons-api
+  name: Offerpad Icons API
+  description: WordPress icons resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - icons
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-icons-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-index-api
+  name: Offerpad Index API
+  description: WordPress index resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - index
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-index-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-locations-api
+  name: Offerpad Locations API
+  description: WordPress locations resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - locations
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-locations-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-media-api
+  name: Offerpad Media API
+  description: WordPress media resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - media
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-media-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-menu-items-api
+  name: Offerpad Menu Items API
+  description: WordPress menu-items resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - menu-items
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-menu-items-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-menu-locations-api
+  name: Offerpad Menu Locations API
+  description: WordPress menu-locations resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - menu-locations
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-menu-locations-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-menus-api
+  name: Offerpad Menus API
+  description: WordPress menus resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - menus
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-menus-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-navigation-api
+  name: Offerpad Navigation API
+  description: WordPress navigation resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - navigation
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-navigation-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-pages-api
+  name: Offerpad Pages API
+  description: WordPress pages resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - pages
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-pages-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-pattern-directory-api
+  name: Offerpad Pattern Directory API
+  description: WordPress pattern-directory resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - pattern-directory
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-pattern-directory-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-plugins-api
+  name: Offerpad Plugins API
+  description: WordPress plugins resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - plugins
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-plugins-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-posts-api
+  name: Offerpad Posts API
+  description: WordPress posts resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - posts
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-posts-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-review-api
+  name: Offerpad Review API
+  description: WordPress review resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - review
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-review-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-search-api
+  name: Offerpad Search API
+  description: WordPress search resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - search
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-search-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-settings-api
+  name: Offerpad Settings API
+  description: WordPress settings resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - settings
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-settings-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-sidebars-api
+  name: Offerpad Sidebars API
+  description: WordPress sidebars resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - sidebars
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-sidebars-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-states-api
+  name: Offerpad States API
+  description: WordPress states resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - states
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-states-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-statuses-api
+  name: Offerpad Statuses API
+  description: WordPress statuses resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - statuses
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-statuses-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-tags-api
+  name: Offerpad Tags API
+  description: WordPress tags resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - tags
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-tags-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-taxonomies-api
+  name: Offerpad Taxonomies API
+  description: WordPress taxonomies resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - taxonomies
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-taxonomies-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-template-parts-api
+  name: Offerpad Template Parts API
+  description: WordPress template-parts resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - template-parts
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-template-parts-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-templates-api
+  name: Offerpad Templates API
+  description: WordPress templates resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - templates
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-templates-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-themes-api
+  name: Offerpad Themes API
+  description: WordPress themes resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - themes
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-themes-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-types-api
+  name: Offerpad Types API
+  description: WordPress types resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - types
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-types-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-users-api
+  name: Offerpad Users API
+  description: WordPress users resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - users
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-users-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-widget-types-api
+  name: Offerpad Widget Types API
+  description: WordPress widget-types resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - widget-types
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-widget-types-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-widgets-api
+  name: Offerpad Widgets API
+  description: WordPress widgets resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - widgets
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-widgets-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
+- aid: offerpad:offerpad-wp-pattern-category-api
+  name: Offerpad Wp Pattern Category API
+  description: WordPress wp_pattern_category resource routes.
+  humanURL: https://developer.wordpress.org/rest-api/
+  baseURL: https://www.offerpad.com/wp-json
+  tags:
+  - wp_pattern_category
+  properties:
+  - type: OpenAPI
+    url: openapi/offerpad-wp-pattern-category-api-openapi.yml
+  - type: Discovery
+    url: openapi/offerpad-wp-json-discovery.json
+  - type: Examples
+    url: examples/_index.yml
+  - type: DataModel
+    url: data-model/offerpad-data-model.yml
+  - type: Documentation
+    url: https://developer.wordpress.org/rest-api/
 common:
+  - type: Overlay
+    url: overlays/offerpad-wordpress-wp-v2-overlay.yaml
   - type: AgenticAccess
     url: agentic-access/offerpad-agentic-access.yml
   - type: DomainSecurity
