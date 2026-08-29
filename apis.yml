@@ -29,6 +29,18 @@ description: >-
   metadata document delegating to Okta — so Offerpad's identity layer is machine
   discoverable while none of its business capability is documented, schema-backed
   or obtainable by a third party.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: unknown
