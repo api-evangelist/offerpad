@@ -1,0 +1,1086 @@
+openapi: 3.2.0
+info:
+  title: Offerpad WordPress REST API (wp/v2) Users API
+  version: 2.0.0
+  summary: The wp/v2 namespace of the WordPress REST API served by Offerpad's marketing site.
+  description: DERIVED, NOT PUBLISHED BY OFFERPAD. Offerpad publishes no OpenAPI definition and does not document or support this surface as a developer product. This document was derived mechanically by API Evangelist from the live WordPress route-discovery document fetched from https://www.offerpad.com/wp-json/ on 2026-07-26 (411 routes across 20 namespaces; the wp/v2 namespace is captured here). Every path, method, parameter name, type, enum, default and description is copied verbatim from that discovery document. Response bodies are intentionally left as generic objects because the discovery document does not publish response schemas; error responses are grounded in payloads probed live against this host. This is a content-management surface for the marketing site - it is NOT a real estate, listing, valuation or transaction API.
+  contact:
+    name: Offerpad
+    url: https://www.offerpad.com/contact/
+  x-apievangelist-method: derived
+  x-apievangelist-source: openapi/offerpad-wp-json-discovery.json
+  x-apievangelist-derived: '2026-07-26'
+  x-upstream-documentation: https://developer.wordpress.org/rest-api/
+servers:
+- url: https://www.offerpad.com/wp-json
+  description: Offerpad marketing site (WP Engine)
+security: []
+tags:
+- name: users
+  description: WordPress users resource routes.
+paths:
+  /wp/v2/users:
+    get:
+      operationId: listUsers
+      summary: List users
+      tags:
+      - users
+      parameters:
+      - name: context
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        required: false
+        description: Scope under which the request is made; determines fields present in response.
+        in: query
+      - name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Current page of the collection.
+        in: query
+      - name: per_page
+        schema:
+          type: integer
+          default: 10
+          minimum: 1
+          maximum: 100
+        required: false
+        description: Maximum number of items to be returned in result set.
+        in: query
+      - name: search
+        schema:
+          type: string
+        required: false
+        description: Limit results to those matching a string.
+        in: query
+      - name: exclude
+        schema:
+          type: array
+          default: []
+          items:
+            type: integer
+        required: false
+        description: Ensure result set excludes specific IDs.
+        in: query
+      - name: include
+        schema:
+          type: array
+          default: []
+          items:
+            type: integer
+        required: false
+        description: Limit result set to specific IDs.
+        in: query
+      - name: offset
+        schema:
+          type: integer
+        required: false
+        description: Offset the result set by a specific number of items.
+        in: query
+      - name: order
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+        required: false
+        description: Order sort attribute ascending or descending.
+        in: query
+      - name: orderby
+        schema:
+          type: string
+          enum:
+          - id
+          - include
+          - name
+          - registered_date
+          - slug
+          - include_slugs
+          - email
+          - url
+          default: name
+        required: false
+        description: Sort collection by user attribute.
+        in: query
+      - name: slug
+        schema:
+          type: array
+          items:
+            type: string
+        required: false
+        description: Limit result set to users with one or more specific slugs.
+        in: query
+      - name: roles
+        schema:
+          type: array
+          items:
+            type: string
+        required: false
+        description: Limit result set to users matching at least one specific role provided. Accepts csv list or single role.
+        in: query
+      - name: capabilities
+        schema:
+          type: array
+          items:
+            type: string
+        required: false
+        description: Limit result set to users matching at least one specific capability provided. Accepts csv list or single capability.
+        in: query
+      - name: who
+        schema:
+          type: string
+          enum:
+          - authors
+        required: false
+        description: Limit result set to users who are considered authors.
+        in: query
+      - name: has_published_posts
+        schema:
+          type:
+          - boolean
+          - array
+          items:
+            type: string
+            enum:
+              post: post
+              page: page
+              attachment: attachment
+              nav_menu_item: nav_menu_item
+              wp_block: wp_block
+              wp_template: wp_template
+              wp_template_part: wp_template_part
+              wp_global_styles: wp_global_styles
+              wp_navigation: wp_navigation
+              wp_font_family: wp_font_family
+              wp_font_face: wp_font_face
+              e-floating-buttons: e-floating-buttons
+              elementor_library: elementor_library
+              elementor_snippet: elementor_snippet
+              review: review
+              locations: locations
+        required: false
+        description: Limit result set to users who have published posts.
+        in: query
+      - name: search_columns
+        schema:
+          type: array
+          default: []
+          items:
+            type: string
+            enum:
+            - email
+            - name
+            - id
+            - username
+            - slug
+        required: false
+        description: Array of column names to be searched.
+        in: query
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    post:
+      operationId: createUsers
+      summary: Create users
+      tags:
+      - users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: Login name for the user.
+                name:
+                  type: string
+                  description: Display name for the user.
+                first_name:
+                  type: string
+                  description: First name for the user.
+                last_name:
+                  type: string
+                  description: Last name for the user.
+                email:
+                  type: string
+                  format: email
+                  description: The email address for the user.
+                url:
+                  type: string
+                  format: uri
+                  description: URL of the user.
+                description:
+                  type: string
+                  description: Description of the user.
+                locale:
+                  type: string
+                  enum:
+                  - ''
+                  - en_US
+                  description: Locale for the user.
+                nickname:
+                  type: string
+                  description: The nickname for the user.
+                slug:
+                  type: string
+                  description: An alphanumeric identifier for the user.
+                roles:
+                  type: array
+                  items:
+                    type: string
+                  description: Roles assigned to the user.
+                password:
+                  type: string
+                  description: Password for the user (never included).
+                meta:
+                  type: object
+                  description: Meta fields.
+                elementor_introduction:
+                  type: object
+                  description: Elementor user meta data
+              required:
+              - username
+              - email
+              - password
+      security:
+      - applicationPasswords: []
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: Resource created.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /wp/v2/users/{id}:
+    get:
+      operationId: getUsersById
+      summary: Retrieve users
+      tags:
+      - users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Unique identifier for the user.
+      - name: context
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        required: false
+        description: Scope under which the request is made; determines fields present in response.
+        in: query
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    post:
+      operationId: createUsersById
+      summary: Create users
+      tags:
+      - users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Unique identifier for the user.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: Login name for the user.
+                name:
+                  type: string
+                  description: Display name for the user.
+                first_name:
+                  type: string
+                  description: First name for the user.
+                last_name:
+                  type: string
+                  description: Last name for the user.
+                email:
+                  type: string
+                  format: email
+                  description: The email address for the user.
+                url:
+                  type: string
+                  format: uri
+                  description: URL of the user.
+                description:
+                  type: string
+                  description: Description of the user.
+                locale:
+                  type: string
+                  enum:
+                  - ''
+                  - en_US
+                  description: Locale for the user.
+                nickname:
+                  type: string
+                  description: The nickname for the user.
+                slug:
+                  type: string
+                  description: An alphanumeric identifier for the user.
+                roles:
+                  type: array
+                  items:
+                    type: string
+                  description: Roles assigned to the user.
+                password:
+                  type: string
+                  description: Password for the user (never included).
+                meta:
+                  type: object
+                  description: Meta fields.
+                elementor_introduction:
+                  type: object
+                  description: Elementor user meta data
+      security:
+      - applicationPasswords: []
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: Resource created.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    delete:
+      operationId: deleteUsersById
+      summary: Delete users
+      tags:
+      - users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Unique identifier for the user.
+      - name: force
+        schema:
+          type: boolean
+          default: false
+        required: false
+        description: Required to be true, as users do not support trashing.
+        in: query
+      - name: reassign
+        schema:
+          type: integer
+        required: true
+        description: Reassign the deleted user's posts and links to this user ID.
+        in: query
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /wp/v2/users/{user_id}/application-passwords:
+    get:
+      operationId: getUsersByUser_IdApplicationPasswords
+      summary: Retrieve users application passwords
+      tags:
+      - users
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path parameter user_id declared by the route regex.
+      - name: context
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        required: false
+        description: Scope under which the request is made; determines fields present in response.
+        in: query
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    post:
+      operationId: createUsersByUser_IdApplicationPasswords
+      summary: Create users application passwords
+      tags:
+      - users
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path parameter user_id declared by the route regex.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                app_id:
+                  type: string
+                  description: A UUID provided by the application to uniquely identify it. It is recommended to use an UUID v5 with the URL or DNS namespace.
+                name:
+                  type: string
+                  minLength: 1
+                  description: The name of the application password.
+              required:
+              - name
+      security:
+      - applicationPasswords: []
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: Resource created.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    delete:
+      operationId: deleteUsersByUser_IdApplicationPasswords
+      summary: Delete users application passwords
+      tags:
+      - users
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path parameter user_id declared by the route regex.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /wp/v2/users/{user_id}/application-passwords/{uuid}:
+    get:
+      operationId: getUsersByUser_IdApplicationPasswordsByUuid
+      summary: Retrieve users application passwords
+      tags:
+      - users
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path parameter uuid declared by the route regex.
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path parameter user_id declared by the route regex.
+      - name: context
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        required: false
+        description: Scope under which the request is made; determines fields present in response.
+        in: query
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    post:
+      operationId: createUsersByUser_IdApplicationPasswordsByUuid
+      summary: Create users application passwords
+      tags:
+      - users
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path parameter uuid declared by the route regex.
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path parameter user_id declared by the route regex.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                app_id:
+                  type: string
+                  description: A UUID provided by the application to uniquely identify it. It is recommended to use an UUID v5 with the URL or DNS namespace.
+                name:
+                  type: string
+                  minLength: 1
+                  description: The name of the application password.
+      security:
+      - applicationPasswords: []
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: Resource created.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    delete:
+      operationId: deleteUsersByUser_IdApplicationPasswordsByUuid
+      summary: Delete users application passwords
+      tags:
+      - users
+      parameters:
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path parameter uuid declared by the route regex.
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path parameter user_id declared by the route regex.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /wp/v2/users/{user_id}/application-passwords/introspect:
+    get:
+      operationId: getUsersByUser_IdApplicationPasswordsIntrospect
+      summary: Retrieve users application passwords introspect
+      tags:
+      - users
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path parameter user_id declared by the route regex.
+      - name: context
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        required: false
+        description: Scope under which the request is made; determines fields present in response.
+        in: query
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /wp/v2/users/me:
+    get:
+      operationId: listUsersMe
+      summary: List users me
+      tags:
+      - users
+      parameters:
+      - name: context
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        required: false
+        description: Scope under which the request is made; determines fields present in response.
+        in: query
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    post:
+      operationId: createUsersMe
+      summary: Create users me
+      tags:
+      - users
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: Login name for the user.
+                name:
+                  type: string
+                  description: Display name for the user.
+                first_name:
+                  type: string
+                  description: First name for the user.
+                last_name:
+                  type: string
+                  description: Last name for the user.
+                email:
+                  type: string
+                  format: email
+                  description: The email address for the user.
+                url:
+                  type: string
+                  format: uri
+                  description: URL of the user.
+                description:
+                  type: string
+                  description: Description of the user.
+                locale:
+                  type: string
+                  enum:
+                  - ''
+                  - en_US
+                  description: Locale for the user.
+                nickname:
+                  type: string
+                  description: The nickname for the user.
+                slug:
+                  type: string
+                  description: An alphanumeric identifier for the user.
+                roles:
+                  type: array
+                  items:
+                    type: string
+                  description: Roles assigned to the user.
+                password:
+                  type: string
+                  description: Password for the user (never included).
+                meta:
+                  type: object
+                  description: Meta fields.
+                elementor_introduction:
+                  type: object
+                  description: Elementor user meta data
+      security:
+      - applicationPasswords: []
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: Resource created.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    delete:
+      operationId: deleteUsersMe
+      summary: Delete users me
+      tags:
+      - users
+      parameters:
+      - name: force
+        schema:
+          type: boolean
+          default: false
+        required: false
+        description: Required to be true, as users do not support trashing.
+        in: query
+      - name: reassign
+        schema:
+          type: integer
+        required: true
+        description: Reassign the deleted user's posts and links to this user ID.
+        in: query
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+components:
+  schemas:
+    WPError:
+      type: object
+      description: WordPress REST error envelope, observed live on this host.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code, e.g. rest_no_route.
+        message:
+          type: string
+          description: Human-readable error message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code, repeated in the body.
+            params:
+              type: object
+              description: Per-parameter validation messages (rest_invalid_param).
+            details:
+              type: object
+              description: Per-parameter structured error detail.
+      required:
+      - code
+      - message
+      examples:
+      - code: rest_post_invalid_id
+        message: Invalid post ID.
+        data:
+          status: 404
+  securitySchemes:
+    applicationPasswords:
+      type: http
+      scheme: basic
+      description: WordPress application passwords, advertised by the discovery document at https://www.offerpad.com/wp-admin/authorize-application.php. Sent as HTTP Basic credentials. Required for write operations and for reads in the edit context; issuing a credential requires an Offerpad WordPress account, which is not self-serve.

@@ -1,0 +1,676 @@
+openapi: 3.2.0
+info:
+  title: Offerpad WordPress REST API (wp/v2) Font Families API
+  version: 2.0.0
+  summary: The wp/v2 namespace of the WordPress REST API served by Offerpad's marketing site.
+  description: DERIVED, NOT PUBLISHED BY OFFERPAD. Offerpad publishes no OpenAPI definition and does not document or support this surface as a developer product. This document was derived mechanically by API Evangelist from the live WordPress route-discovery document fetched from https://www.offerpad.com/wp-json/ on 2026-07-26 (411 routes across 20 namespaces; the wp/v2 namespace is captured here). Every path, method, parameter name, type, enum, default and description is copied verbatim from that discovery document. Response bodies are intentionally left as generic objects because the discovery document does not publish response schemas; error responses are grounded in payloads probed live against this host. This is a content-management surface for the marketing site - it is NOT a real estate, listing, valuation or transaction API.
+  contact:
+    name: Offerpad
+    url: https://www.offerpad.com/contact/
+  x-apievangelist-method: derived
+  x-apievangelist-source: openapi/offerpad-wp-json-discovery.json
+  x-apievangelist-derived: '2026-07-26'
+  x-upstream-documentation: https://developer.wordpress.org/rest-api/
+servers:
+- url: https://www.offerpad.com/wp-json
+  description: Offerpad marketing site (WP Engine)
+security: []
+tags:
+- name: font-families
+  description: WordPress font-families resource routes.
+paths:
+  /wp/v2/font-families:
+    get:
+      operationId: listFontFamilies
+      summary: List font families
+      tags:
+      - font-families
+      parameters:
+      - name: context
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        required: false
+        description: Scope under which the request is made; determines fields present in response.
+        in: query
+      - name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Current page of the collection.
+        in: query
+      - name: per_page
+        schema:
+          type: integer
+          default: 10
+          minimum: 1
+          maximum: 100
+        required: false
+        description: Maximum number of items to be returned in result set.
+        in: query
+      - name: exclude
+        schema:
+          type: array
+          default: []
+          items:
+            type: integer
+        required: false
+        description: Ensure result set excludes specific IDs.
+        in: query
+      - name: include
+        schema:
+          type: array
+          default: []
+          items:
+            type: integer
+        required: false
+        description: Limit result set to specific IDs.
+        in: query
+      - name: search_semantics
+        schema:
+          type: string
+          enum:
+          - exact
+        required: false
+        description: How to interpret the search input.
+        in: query
+      - name: offset
+        schema:
+          type: integer
+        required: false
+        description: Offset the result set by a specific number of items.
+        in: query
+      - name: order
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: desc
+        required: false
+        description: Order sort attribute ascending or descending.
+        in: query
+      - name: orderby
+        schema:
+          type: string
+          enum:
+          - id
+          - include
+          default: id
+        required: false
+        description: Sort collection by post attribute.
+        in: query
+      - name: slug
+        schema:
+          type: array
+          items:
+            type: string
+        required: false
+        description: Limit result set to posts with one or more specific slugs.
+        in: query
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    post:
+      operationId: createFontFamilies
+      summary: Create font families
+      tags:
+      - font-families
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                theme_json_version:
+                  type: integer
+                  default: 3
+                  minimum: 2
+                  maximum: 3
+                  description: Version of the theme.json schema used for the typography settings.
+                font_family_settings:
+                  type: string
+                  description: font-family declaration in theme.json format, encoded as a string.
+              required:
+              - font_family_settings
+      security:
+      - applicationPasswords: []
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: Resource created.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /wp/v2/font-families/{font_family_id}/font-faces:
+    get:
+      operationId: getFontFamiliesByFont_Family_IdFontFaces
+      summary: Retrieve font families font faces
+      tags:
+      - font-families
+      parameters:
+      - name: font_family_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID for the parent font family of the font face.
+      - name: context
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        required: false
+        description: Scope under which the request is made; determines fields present in response.
+        in: query
+      - name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Current page of the collection.
+        in: query
+      - name: per_page
+        schema:
+          type: integer
+          default: 10
+          minimum: 1
+          maximum: 100
+        required: false
+        description: Maximum number of items to be returned in result set.
+        in: query
+      - name: exclude
+        schema:
+          type: array
+          default: []
+          items:
+            type: integer
+        required: false
+        description: Ensure result set excludes specific IDs.
+        in: query
+      - name: include
+        schema:
+          type: array
+          default: []
+          items:
+            type: integer
+        required: false
+        description: Limit result set to specific IDs.
+        in: query
+      - name: search_semantics
+        schema:
+          type: string
+          enum:
+          - exact
+        required: false
+        description: How to interpret the search input.
+        in: query
+      - name: offset
+        schema:
+          type: integer
+        required: false
+        description: Offset the result set by a specific number of items.
+        in: query
+      - name: order
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: desc
+        required: false
+        description: Order sort attribute ascending or descending.
+        in: query
+      - name: orderby
+        schema:
+          type: string
+          enum:
+          - id
+          - include
+          default: id
+        required: false
+        description: Sort collection by post attribute.
+        in: query
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    post:
+      operationId: createFontFamiliesByFont_Family_IdFontFaces
+      summary: Create font families font faces
+      tags:
+      - font-families
+      parameters:
+      - name: font_family_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID for the parent font family of the font face.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                theme_json_version:
+                  type: integer
+                  default: 3
+                  minimum: 2
+                  maximum: 3
+                  description: Version of the theme.json schema used for the typography settings.
+                font_face_settings:
+                  type: string
+                  description: font-face declaration in theme.json format, encoded as a string.
+              required:
+              - font_face_settings
+      security:
+      - applicationPasswords: []
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: Resource created.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /wp/v2/font-families/{font_family_id}/font-faces/{id}:
+    get:
+      operationId: getFontFamiliesByFont_Family_IdFontFacesById
+      summary: Retrieve font families font faces
+      tags:
+      - font-families
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Unique identifier for the font face.
+      - name: font_family_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID for the parent font family of the font face.
+      - name: context
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        required: false
+        description: Scope under which the request is made; determines fields present in response.
+        in: query
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    delete:
+      operationId: deleteFontFamiliesByFont_Family_IdFontFacesById
+      summary: Delete font families font faces
+      tags:
+      - font-families
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Unique identifier for the font face.
+      - name: font_family_id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID for the parent font family of the font face.
+      - name: force
+        schema:
+          type: boolean
+          default: false
+        required: false
+        description: Whether to bypass Trash and force deletion.
+        in: query
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /wp/v2/font-families/{id}:
+    get:
+      operationId: getFontFamiliesById
+      summary: Retrieve font families
+      tags:
+      - font-families
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Unique identifier for the post.
+      - name: context
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        required: false
+        description: Scope under which the request is made; determines fields present in response.
+        in: query
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    post:
+      operationId: createFontFamiliesById
+      summary: Create font families
+      tags:
+      - font-families
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Unique identifier for the post.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                theme_json_version:
+                  type: integer
+                  default: 3
+                  minimum: 2
+                  maximum: 3
+                  description: Version of the theme.json schema used for the typography settings.
+                font_family_settings:
+                  type: string
+                  description: font-family declaration in theme.json format, encoded as a string.
+              required:
+              - font_family_settings
+      security:
+      - applicationPasswords: []
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: Resource created.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    delete:
+      operationId: deleteFontFamiliesById
+      summary: Delete font families
+      tags:
+      - font-families
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Unique identifier for the post.
+      - name: force
+        schema:
+          type: boolean
+          default: false
+        required: false
+        description: Whether to bypass Trash and force deletion.
+        in: query
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+components:
+  schemas:
+    WPError:
+      type: object
+      description: WordPress REST error envelope, observed live on this host.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code, e.g. rest_no_route.
+        message:
+          type: string
+          description: Human-readable error message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code, repeated in the body.
+            params:
+              type: object
+              description: Per-parameter validation messages (rest_invalid_param).
+            details:
+              type: object
+              description: Per-parameter structured error detail.
+      required:
+      - code
+      - message
+      examples:
+      - code: rest_post_invalid_id
+        message: Invalid post ID.
+        data:
+          status: 404
+  securitySchemes:
+    applicationPasswords:
+      type: http
+      scheme: basic
+      description: WordPress application passwords, advertised by the discovery document at https://www.offerpad.com/wp-admin/authorize-application.php. Sent as HTTP Basic credentials. Required for write operations and for reads in the edit context; issuing a credential requires an Offerpad WordPress account, which is not self-serve.

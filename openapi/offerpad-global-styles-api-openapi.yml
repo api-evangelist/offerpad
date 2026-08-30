@@ -1,0 +1,361 @@
+openapi: 3.2.0
+info:
+  title: Offerpad WordPress REST API (wp/v2) Global Styles API
+  version: 2.0.0
+  summary: The wp/v2 namespace of the WordPress REST API served by Offerpad's marketing site.
+  description: DERIVED, NOT PUBLISHED BY OFFERPAD. Offerpad publishes no OpenAPI definition and does not document or support this surface as a developer product. This document was derived mechanically by API Evangelist from the live WordPress route-discovery document fetched from https://www.offerpad.com/wp-json/ on 2026-07-26 (411 routes across 20 namespaces; the wp/v2 namespace is captured here). Every path, method, parameter name, type, enum, default and description is copied verbatim from that discovery document. Response bodies are intentionally left as generic objects because the discovery document does not publish response schemas; error responses are grounded in payloads probed live against this host. This is a content-management surface for the marketing site - it is NOT a real estate, listing, valuation or transaction API.
+  contact:
+    name: Offerpad
+    url: https://www.offerpad.com/contact/
+  x-apievangelist-method: derived
+  x-apievangelist-source: openapi/offerpad-wp-json-discovery.json
+  x-apievangelist-derived: '2026-07-26'
+  x-upstream-documentation: https://developer.wordpress.org/rest-api/
+servers:
+- url: https://www.offerpad.com/wp-json
+  description: Offerpad marketing site (WP Engine)
+security: []
+tags:
+- name: global-styles
+  description: WordPress global-styles resource routes.
+paths:
+  /wp/v2/global-styles/{id}:
+    get:
+      operationId: getGlobalStylesById
+      summary: Retrieve global styles
+      tags:
+      - global-styles
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: ID of global styles config.
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+    post:
+      operationId: createGlobalStylesById
+      summary: Create global styles
+      tags:
+      - global-styles
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path parameter id declared by the route regex.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                styles:
+                  type: object
+                  description: Global styles.
+                settings:
+                  type: object
+                  description: Global settings.
+                title:
+                  type:
+                  - object
+                  - string
+                  description: Title of the global styles variation.
+      security:
+      - applicationPasswords: []
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '201':
+          description: Resource created.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /wp/v2/global-styles/{parent}/revisions:
+    get:
+      operationId: getGlobalStylesByParentRevisions
+      summary: Retrieve global styles revisions
+      tags:
+      - global-styles
+      parameters:
+      - name: parent
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID for the parent of the revision.
+      - name: context
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        required: false
+        description: Scope under which the request is made; determines fields present in response.
+        in: query
+      - name: page
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+        required: false
+        description: Current page of the collection.
+        in: query
+      - name: per_page
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+        required: false
+        description: Maximum number of items to be returned in result set.
+        in: query
+      - name: offset
+        schema:
+          type: integer
+        required: false
+        description: Offset the result set by a specific number of items.
+        in: query
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /wp/v2/global-styles/{parent}/revisions/{id}:
+    get:
+      operationId: getGlobalStylesByParentRevisionsById
+      summary: Retrieve global styles revisions
+      tags:
+      - global-styles
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Unique identifier for the global styles revision.
+      - name: parent
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID for the parent of the global styles revision.
+      - name: context
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        required: false
+        description: Scope under which the request is made; determines fields present in response.
+        in: query
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /wp/v2/global-styles/themes/{stylesheet}/variations:
+    get:
+      operationId: getGlobalStylesThemesByStylesheetVariations
+      summary: Retrieve global styles themes variations
+      tags:
+      - global-styles
+      parameters:
+      - name: stylesheet
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The theme identifier
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /wp/v2/global-styles/themes/{stylesheet}:
+    get:
+      operationId: getGlobalStylesThemesByStylesheet
+      summary: Retrieve global styles themes
+      tags:
+      - global-styles
+      parameters:
+      - name: stylesheet
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The theme identifier
+      responses:
+        '200':
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid parameter(s). Probed live: {"code":"rest_invalid_param"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '401':
+          description: 'Authentication required or capability missing. Probed live: {"code":"rest_forbidden"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: 'No route matched, or the resource id is invalid. Probed live: {"code":"rest_no_route"} / {"code":"rest_post_invalid_id"}'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+components:
+  schemas:
+    WPError:
+      type: object
+      description: WordPress REST error envelope, observed live on this host.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code, e.g. rest_no_route.
+        message:
+          type: string
+          description: Human-readable error message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status code, repeated in the body.
+            params:
+              type: object
+              description: Per-parameter validation messages (rest_invalid_param).
+            details:
+              type: object
+              description: Per-parameter structured error detail.
+      required:
+      - code
+      - message
+      examples:
+      - code: rest_post_invalid_id
+        message: Invalid post ID.
+        data:
+          status: 404
+  securitySchemes:
+    applicationPasswords:
+      type: http
+      scheme: basic
+      description: WordPress application passwords, advertised by the discovery document at https://www.offerpad.com/wp-admin/authorize-application.php. Sent as HTTP Basic credentials. Required for write operations and for reads in the edit context; issuing a credential requires an Offerpad WordPress account, which is not self-serve.
