@@ -449,7 +449,7 @@ apis:
   humanURL: https://developer.wordpress.org/rest-api/
   baseURL: https://www.offerpad.com/wp-json
   tags:
-  - Menu Items
+  - menu-items
   tags_raw:
   - menu-items
   properties:
