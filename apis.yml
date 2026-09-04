@@ -941,9 +941,10 @@ common:
   - type: Packages
     name: Client library survey (no Offerpad package exists in any registry)
     url: packages/offerpad-packages.yml
-  - type: MCPServer
+  - type: X-MCPServerCandidate
     name: Candidate MCP tool surface derived from the public content API
     url: mcp/offerpad-mcp.yml
+    note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
   - type: ToolCrosswalk
     name: Candidate MCP tools bound to their backing operations
     url: mcp/offerpad-tool-crosswalk.yml
