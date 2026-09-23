@@ -3,7 +3,7 @@ info:
   title: Offerpad WordPress REST API (wp/v2) Menu Items API
   version: 2.0.0
   summary: The wp/v2 namespace of the WordPress REST API served by Offerpad's marketing site.
-  description: DERIVED, NOT PUBLISHED BY OFFERPAD. Offerpad publishes no OpenAPI definition and does not document or support this surface as a developer product. This document was derived mechanically by API Evangelist from the live WordPress route-discovery document fetched from https://www.offerpad.com/wp-json/ on 2026-07-26 (411 routes across 20 namespaces; the wp/v2 namespace is captured here). Every path, method, parameter name, type, enum, default and description is copied verbatim from that discovery document. Response bodies are intentionally left as generic objects because the discovery document does not publish response schemas; error responses are grounded in payloads probed live against this host. This is a content-management surface for the marketing site - it is NOT a real estate, listing, valuation or transaction API.
+  description: DERIVED, NOT PUBLISHED BY OFFERPAD.
   contact:
     name: Offerpad
     url: https://www.offerpad.com/contact/
@@ -16,7 +16,7 @@ servers:
   description: Offerpad marketing site (WP Engine)
 security: []
 tags:
-- name: menu-items
+- name: Menu Items
   description: WordPress menu-items resource routes.
 paths:
   /wp/v2/menu-items:
@@ -24,7 +24,7 @@ paths:
       operationId: listMenuItems
       summary: List menu items
       tags:
-      - menu-items
+      - Menu Items
       parameters:
       - name: context
         schema:
@@ -254,7 +254,7 @@ paths:
       operationId: createMenuItems
       summary: Create menu items
       tags:
-      - menu-items
+      - Menu Items
       requestBody:
         required: false
         content:
@@ -375,7 +375,7 @@ paths:
       operationId: getMenuItemsById
       summary: Retrieve menu items
       tags:
-      - menu-items
+      - Menu Items
       parameters:
       - name: id
         in: path
@@ -423,7 +423,7 @@ paths:
       operationId: createMenuItemsById
       summary: Create menu items
       tags:
-      - menu-items
+      - Menu Items
       parameters:
       - name: id
         in: path
@@ -545,7 +545,7 @@ paths:
       operationId: deleteMenuItemsById
       summary: Delete menu items
       tags:
-      - menu-items
+      - Menu Items
       parameters:
       - name: id
         in: path
@@ -590,7 +590,7 @@ paths:
       operationId: getMenuItemsByIdAutosaves
       summary: Retrieve menu items autosaves
       tags:
-      - menu-items
+      - Menu Items
       parameters:
       - name: id
         in: path
@@ -644,7 +644,7 @@ paths:
       operationId: createMenuItemsByIdAutosaves
       summary: Create menu items autosaves
       tags:
-      - menu-items
+      - Menu Items
       parameters:
       - name: id
         in: path
@@ -767,7 +767,7 @@ paths:
       operationId: getMenuItemsByParentAutosavesById
       summary: Retrieve menu items autosaves
       tags:
-      - menu-items
+      - Menu Items
       parameters:
       - name: id
         in: path

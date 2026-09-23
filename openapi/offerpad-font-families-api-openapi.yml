@@ -3,7 +3,7 @@ info:
   title: Offerpad WordPress REST API (wp/v2) Font Families API
   version: 2.0.0
   summary: The wp/v2 namespace of the WordPress REST API served by Offerpad's marketing site.
-  description: DERIVED, NOT PUBLISHED BY OFFERPAD. Offerpad publishes no OpenAPI definition and does not document or support this surface as a developer product. This document was derived mechanically by API Evangelist from the live WordPress route-discovery document fetched from https://www.offerpad.com/wp-json/ on 2026-07-26 (411 routes across 20 namespaces; the wp/v2 namespace is captured here). Every path, method, parameter name, type, enum, default and description is copied verbatim from that discovery document. Response bodies are intentionally left as generic objects because the discovery document does not publish response schemas; error responses are grounded in payloads probed live against this host. This is a content-management surface for the marketing site - it is NOT a real estate, listing, valuation or transaction API.
+  description: DERIVED, NOT PUBLISHED BY OFFERPAD.
   contact:
     name: Offerpad
     url: https://www.offerpad.com/contact/
@@ -16,7 +16,7 @@ servers:
   description: Offerpad marketing site (WP Engine)
 security: []
 tags:
-- name: font-families
+- name: font families
   description: WordPress font-families resource routes.
 paths:
   /wp/v2/font-families:
@@ -24,7 +24,7 @@ paths:
       operationId: listFontFamilies
       summary: List font families
       tags:
-      - font-families
+      - font families
       parameters:
       - name: context
         schema:
@@ -143,7 +143,7 @@ paths:
       operationId: createFontFamilies
       summary: Create font families
       tags:
-      - font-families
+      - font families
       requestBody:
         required: true
         content:
@@ -200,7 +200,7 @@ paths:
       operationId: getFontFamiliesByFont_Family_IdFontFaces
       summary: Retrieve font families font faces
       tags:
-      - font-families
+      - font families
       parameters:
       - name: font_family_id
         in: path
@@ -317,7 +317,7 @@ paths:
       operationId: createFontFamiliesByFont_Family_IdFontFaces
       summary: Create font families font faces
       tags:
-      - font-families
+      - font families
       parameters:
       - name: font_family_id
         in: path
@@ -381,7 +381,7 @@ paths:
       operationId: getFontFamiliesByFont_Family_IdFontFacesById
       summary: Retrieve font families font faces
       tags:
-      - font-families
+      - font families
       parameters:
       - name: id
         in: path
@@ -435,7 +435,7 @@ paths:
       operationId: deleteFontFamiliesByFont_Family_IdFontFacesById
       summary: Delete font families font faces
       tags:
-      - font-families
+      - font families
       parameters:
       - name: id
         in: path
@@ -486,7 +486,7 @@ paths:
       operationId: getFontFamiliesById
       summary: Retrieve font families
       tags:
-      - font-families
+      - font families
       parameters:
       - name: id
         in: path
@@ -534,7 +534,7 @@ paths:
       operationId: createFontFamiliesById
       summary: Create font families
       tags:
-      - font-families
+      - font families
       parameters:
       - name: id
         in: path
@@ -597,7 +597,7 @@ paths:
       operationId: deleteFontFamiliesById
       summary: Delete font families
       tags:
-      - font-families
+      - font families
       parameters:
       - name: id
         in: path

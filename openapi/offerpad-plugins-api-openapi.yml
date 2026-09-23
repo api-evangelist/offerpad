@@ -3,7 +3,7 @@ info:
   title: Offerpad WordPress REST API (wp/v2) Plugins API
   version: 2.0.0
   summary: The wp/v2 namespace of the WordPress REST API served by Offerpad's marketing site.
-  description: DERIVED, NOT PUBLISHED BY OFFERPAD. Offerpad publishes no OpenAPI definition and does not document or support this surface as a developer product. This document was derived mechanically by API Evangelist from the live WordPress route-discovery document fetched from https://www.offerpad.com/wp-json/ on 2026-07-26 (411 routes across 20 namespaces; the wp/v2 namespace is captured here). Every path, method, parameter name, type, enum, default and description is copied verbatim from that discovery document. Response bodies are intentionally left as generic objects because the discovery document does not publish response schemas; error responses are grounded in payloads probed live against this host. This is a content-management surface for the marketing site - it is NOT a real estate, listing, valuation or transaction API.
+  description: DERIVED, NOT PUBLISHED BY OFFERPAD.
   contact:
     name: Offerpad
     url: https://www.offerpad.com/contact/
@@ -16,7 +16,7 @@ servers:
   description: Offerpad marketing site (WP Engine)
 security: []
 tags:
-- name: plugins
+- name: Plugins
   description: WordPress plugins resource routes.
 paths:
   /wp/v2/plugins:
@@ -24,7 +24,7 @@ paths:
       operationId: listPlugins
       summary: List plugins
       tags:
-      - plugins
+      - Plugins
       parameters:
       - name: context
         schema:
@@ -83,7 +83,7 @@ paths:
       operationId: createPlugins
       summary: Create plugins
       tags:
-      - plugins
+      - Plugins
       requestBody:
         required: true
         content:
@@ -141,7 +141,7 @@ paths:
       operationId: getPluginsByPlugin
       summary: Retrieve plugins
       tags:
-      - plugins
+      - Plugins
       parameters:
       - name: plugin
         in: path
@@ -189,7 +189,7 @@ paths:
       operationId: createPluginsByPlugin
       summary: Create plugins
       tags:
-      - plugins
+      - Plugins
       parameters:
       - name: plugin
         in: path
@@ -255,7 +255,7 @@ paths:
       operationId: deletePluginsByPlugin
       summary: Delete plugins
       tags:
-      - plugins
+      - Plugins
       parameters:
       - name: plugin
         in: path

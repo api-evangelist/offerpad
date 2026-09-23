@@ -3,7 +3,7 @@ info:
   title: Offerpad WordPress REST API (wp/v2) Locations API
   version: 2.0.0
   summary: The wp/v2 namespace of the WordPress REST API served by Offerpad's marketing site.
-  description: DERIVED, NOT PUBLISHED BY OFFERPAD. Offerpad publishes no OpenAPI definition and does not document or support this surface as a developer product. This document was derived mechanically by API Evangelist from the live WordPress route-discovery document fetched from https://www.offerpad.com/wp-json/ on 2026-07-26 (411 routes across 20 namespaces; the wp/v2 namespace is captured here). Every path, method, parameter name, type, enum, default and description is copied verbatim from that discovery document. Response bodies are intentionally left as generic objects because the discovery document does not publish response schemas; error responses are grounded in payloads probed live against this host. This is a content-management surface for the marketing site - it is NOT a real estate, listing, valuation or transaction API.
+  description: DERIVED, NOT PUBLISHED BY OFFERPAD.
   contact:
     name: Offerpad
     url: https://www.offerpad.com/contact/
@@ -16,7 +16,7 @@ servers:
   description: Offerpad marketing site (WP Engine)
 security: []
 tags:
-- name: locations
+- name: Locations
   description: WordPress locations resource routes.
 paths:
   /wp/v2/locations:
@@ -24,7 +24,7 @@ paths:
       operationId: listLocations
       summary: List locations
       tags:
-      - locations
+      - Locations
       parameters:
       - name: context
         schema:
@@ -247,7 +247,7 @@ paths:
       operationId: createLocations
       summary: Create locations
       tags:
-      - locations
+      - Locations
       requestBody:
         required: false
         content:
@@ -334,7 +334,7 @@ paths:
       operationId: getLocationsById
       summary: Retrieve locations
       tags:
-      - locations
+      - Locations
       parameters:
       - name: id
         in: path
@@ -388,7 +388,7 @@ paths:
       operationId: createLocationsById
       summary: Create locations
       tags:
-      - locations
+      - Locations
       parameters:
       - name: id
         in: path
@@ -481,7 +481,7 @@ paths:
       operationId: deleteLocationsById
       summary: Delete locations
       tags:
-      - locations
+      - Locations
       parameters:
       - name: id
         in: path
@@ -526,7 +526,7 @@ paths:
       operationId: getLocationsByIdAutosaves
       summary: Retrieve locations autosaves
       tags:
-      - locations
+      - Locations
       parameters:
       - name: id
         in: path
@@ -580,7 +580,7 @@ paths:
       operationId: createLocationsByIdAutosaves
       summary: Create locations autosaves
       tags:
-      - locations
+      - Locations
       parameters:
       - name: id
         in: path
@@ -677,7 +677,7 @@ paths:
       operationId: getLocationsByParentAutosavesById
       summary: Retrieve locations autosaves
       tags:
-      - locations
+      - Locations
       parameters:
       - name: id
         in: path

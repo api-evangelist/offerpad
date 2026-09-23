@@ -3,7 +3,7 @@ info:
   title: Offerpad WordPress REST API (wp/v2) Users API
   version: 2.0.0
   summary: The wp/v2 namespace of the WordPress REST API served by Offerpad's marketing site.
-  description: DERIVED, NOT PUBLISHED BY OFFERPAD. Offerpad publishes no OpenAPI definition and does not document or support this surface as a developer product. This document was derived mechanically by API Evangelist from the live WordPress route-discovery document fetched from https://www.offerpad.com/wp-json/ on 2026-07-26 (411 routes across 20 namespaces; the wp/v2 namespace is captured here). Every path, method, parameter name, type, enum, default and description is copied verbatim from that discovery document. Response bodies are intentionally left as generic objects because the discovery document does not publish response schemas; error responses are grounded in payloads probed live against this host. This is a content-management surface for the marketing site - it is NOT a real estate, listing, valuation or transaction API.
+  description: DERIVED, NOT PUBLISHED BY OFFERPAD.
   contact:
     name: Offerpad
     url: https://www.offerpad.com/contact/
@@ -16,7 +16,7 @@ servers:
   description: Offerpad marketing site (WP Engine)
 security: []
 tags:
-- name: users
+- name: Users
   description: WordPress users resource routes.
 paths:
   /wp/v2/users:
@@ -24,7 +24,7 @@ paths:
       operationId: listUsers
       summary: List users
       tags:
-      - users
+      - Users
       parameters:
       - name: context
         schema:
@@ -213,7 +213,7 @@ paths:
       operationId: createUsers
       summary: Create users
       tags:
-      - users
+      - Users
       requestBody:
         required: true
         content:
@@ -312,7 +312,7 @@ paths:
       operationId: getUsersById
       summary: Retrieve users
       tags:
-      - users
+      - Users
       parameters:
       - name: id
         in: path
@@ -360,7 +360,7 @@ paths:
       operationId: createUsersById
       summary: Create users
       tags:
-      - users
+      - Users
       parameters:
       - name: id
         in: path
@@ -461,7 +461,7 @@ paths:
       operationId: deleteUsersById
       summary: Delete users
       tags:
-      - users
+      - Users
       parameters:
       - name: id
         in: path
@@ -512,7 +512,7 @@ paths:
       operationId: getUsersByUser_IdApplicationPasswords
       summary: Retrieve users application passwords
       tags:
-      - users
+      - Users
       parameters:
       - name: user_id
         in: path
@@ -560,7 +560,7 @@ paths:
       operationId: createUsersByUser_IdApplicationPasswords
       summary: Create users application passwords
       tags:
-      - users
+      - Users
       parameters:
       - name: user_id
         in: path
@@ -621,7 +621,7 @@ paths:
       operationId: deleteUsersByUser_IdApplicationPasswords
       summary: Delete users application passwords
       tags:
-      - users
+      - Users
       parameters:
       - name: user_id
         in: path
@@ -659,7 +659,7 @@ paths:
       operationId: getUsersByUser_IdApplicationPasswordsByUuid
       summary: Retrieve users application passwords
       tags:
-      - users
+      - Users
       parameters:
       - name: uuid
         in: path
@@ -713,7 +713,7 @@ paths:
       operationId: createUsersByUser_IdApplicationPasswordsByUuid
       summary: Create users application passwords
       tags:
-      - users
+      - Users
       parameters:
       - name: uuid
         in: path
@@ -778,7 +778,7 @@ paths:
       operationId: deleteUsersByUser_IdApplicationPasswordsByUuid
       summary: Delete users application passwords
       tags:
-      - users
+      - Users
       parameters:
       - name: uuid
         in: path
@@ -822,7 +822,7 @@ paths:
       operationId: getUsersByUser_IdApplicationPasswordsIntrospect
       summary: Retrieve users application passwords introspect
       tags:
-      - users
+      - Users
       parameters:
       - name: user_id
         in: path
@@ -871,7 +871,7 @@ paths:
       operationId: listUsersMe
       summary: List users me
       tags:
-      - users
+      - Users
       parameters:
       - name: context
         schema:
@@ -913,7 +913,7 @@ paths:
       operationId: createUsersMe
       summary: Create users me
       tags:
-      - users
+      - Users
       requestBody:
         required: false
         content:
@@ -1007,7 +1007,7 @@ paths:
       operationId: deleteUsersMe
       summary: Delete users me
       tags:
-      - users
+      - Users
       parameters:
       - name: force
         schema:

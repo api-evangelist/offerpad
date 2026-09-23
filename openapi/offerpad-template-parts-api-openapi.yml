@@ -3,7 +3,7 @@ info:
   title: Offerpad WordPress REST API (wp/v2) Template Parts API
   version: 2.0.0
   summary: The wp/v2 namespace of the WordPress REST API served by Offerpad's marketing site.
-  description: DERIVED, NOT PUBLISHED BY OFFERPAD. Offerpad publishes no OpenAPI definition and does not document or support this surface as a developer product. This document was derived mechanically by API Evangelist from the live WordPress route-discovery document fetched from https://www.offerpad.com/wp-json/ on 2026-07-26 (411 routes across 20 namespaces; the wp/v2 namespace is captured here). Every path, method, parameter name, type, enum, default and description is copied verbatim from that discovery document. Response bodies are intentionally left as generic objects because the discovery document does not publish response schemas; error responses are grounded in payloads probed live against this host. This is a content-management surface for the marketing site - it is NOT a real estate, listing, valuation or transaction API.
+  description: DERIVED, NOT PUBLISHED BY OFFERPAD.
   contact:
     name: Offerpad
     url: https://www.offerpad.com/contact/
@@ -16,7 +16,7 @@ servers:
   description: Offerpad marketing site (WP Engine)
 security: []
 tags:
-- name: template-parts
+- name: template parts
   description: WordPress template-parts resource routes.
 paths:
   /wp/v2/template-parts:
@@ -24,7 +24,7 @@ paths:
       operationId: listTemplateParts
       summary: List template parts
       tags:
-      - template-parts
+      - template parts
       parameters:
       - name: context
         schema:
@@ -84,7 +84,7 @@ paths:
       operationId: createTemplateParts
       summary: Create template parts
       tags:
-      - template-parts
+      - template parts
       requestBody:
         required: true
         content:
@@ -175,7 +175,7 @@ paths:
       operationId: getTemplatePartsById
       summary: Retrieve template parts
       tags:
-      - template-parts
+      - template parts
       parameters:
       - name: id
         in: path
@@ -223,7 +223,7 @@ paths:
       operationId: createTemplatePartsById
       summary: Create template parts
       tags:
-      - template-parts
+      - template parts
       parameters:
       - name: id
         in: path
@@ -314,7 +314,7 @@ paths:
       operationId: deleteTemplatePartsById
       summary: Delete template parts
       tags:
-      - template-parts
+      - template parts
       parameters:
       - name: id
         in: path
@@ -359,7 +359,7 @@ paths:
       operationId: getTemplatePartsByIdAutosaves
       summary: Retrieve template parts autosaves
       tags:
-      - template-parts
+      - template parts
       parameters:
       - name: id
         in: path
@@ -407,7 +407,7 @@ paths:
       operationId: createTemplatePartsByIdAutosaves
       summary: Create template parts autosaves
       tags:
-      - template-parts
+      - template parts
       parameters:
       - name: id
         in: path
@@ -499,7 +499,7 @@ paths:
       operationId: getTemplatePartsByParentAutosavesById
       summary: Retrieve template parts autosaves
       tags:
-      - template-parts
+      - template parts
       parameters:
       - name: id
         in: path
@@ -554,7 +554,7 @@ paths:
       operationId: getTemplatePartsByParentRevisions
       summary: Retrieve template parts revisions
       tags:
-      - template-parts
+      - template parts
       parameters:
       - name: parent
         in: path
@@ -674,7 +674,7 @@ paths:
       operationId: getTemplatePartsByParentRevisionsById
       summary: Retrieve template parts revisions
       tags:
-      - template-parts
+      - template parts
       parameters:
       - name: id
         in: path
@@ -728,7 +728,7 @@ paths:
       operationId: deleteTemplatePartsByParentRevisionsById
       summary: Delete template parts revisions
       tags:
-      - template-parts
+      - template parts
       parameters:
       - name: id
         in: path
@@ -779,7 +779,7 @@ paths:
       operationId: listTemplatePartsLookup
       summary: List template parts lookup
       tags:
-      - template-parts
+      - template parts
       parameters:
       - name: slug
         schema:

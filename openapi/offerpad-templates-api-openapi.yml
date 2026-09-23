@@ -3,7 +3,7 @@ info:
   title: Offerpad WordPress REST API (wp/v2) Templates API
   version: 2.0.0
   summary: The wp/v2 namespace of the WordPress REST API served by Offerpad's marketing site.
-  description: DERIVED, NOT PUBLISHED BY OFFERPAD. Offerpad publishes no OpenAPI definition and does not document or support this surface as a developer product. This document was derived mechanically by API Evangelist from the live WordPress route-discovery document fetched from https://www.offerpad.com/wp-json/ on 2026-07-26 (411 routes across 20 namespaces; the wp/v2 namespace is captured here). Every path, method, parameter name, type, enum, default and description is copied verbatim from that discovery document. Response bodies are intentionally left as generic objects because the discovery document does not publish response schemas; error responses are grounded in payloads probed live against this host. This is a content-management surface for the marketing site - it is NOT a real estate, listing, valuation or transaction API.
+  description: DERIVED, NOT PUBLISHED BY OFFERPAD.
   contact:
     name: Offerpad
     url: https://www.offerpad.com/contact/
@@ -16,7 +16,7 @@ servers:
   description: Offerpad marketing site (WP Engine)
 security: []
 tags:
-- name: templates
+- name: Templates
   description: WordPress templates resource routes.
 paths:
   /wp/v2/templates:
@@ -24,7 +24,7 @@ paths:
       operationId: listTemplates
       summary: List templates
       tags:
-      - templates
+      - Templates
       parameters:
       - name: context
         schema:
@@ -84,7 +84,7 @@ paths:
       operationId: createTemplates
       summary: Create templates
       tags:
-      - templates
+      - Templates
       requestBody:
         required: true
         content:
@@ -172,7 +172,7 @@ paths:
       operationId: getTemplatesById
       summary: Retrieve templates
       tags:
-      - templates
+      - Templates
       parameters:
       - name: id
         in: path
@@ -220,7 +220,7 @@ paths:
       operationId: createTemplatesById
       summary: Create templates
       tags:
-      - templates
+      - Templates
       parameters:
       - name: id
         in: path
@@ -308,7 +308,7 @@ paths:
       operationId: deleteTemplatesById
       summary: Delete templates
       tags:
-      - templates
+      - Templates
       parameters:
       - name: id
         in: path
@@ -353,7 +353,7 @@ paths:
       operationId: getTemplatesByIdAutosaves
       summary: Retrieve templates autosaves
       tags:
-      - templates
+      - Templates
       parameters:
       - name: id
         in: path
@@ -401,7 +401,7 @@ paths:
       operationId: createTemplatesByIdAutosaves
       summary: Create templates autosaves
       tags:
-      - templates
+      - Templates
       parameters:
       - name: id
         in: path
@@ -490,7 +490,7 @@ paths:
       operationId: getTemplatesByParentAutosavesById
       summary: Retrieve templates autosaves
       tags:
-      - templates
+      - Templates
       parameters:
       - name: id
         in: path
@@ -545,7 +545,7 @@ paths:
       operationId: getTemplatesByParentRevisions
       summary: Retrieve templates revisions
       tags:
-      - templates
+      - Templates
       parameters:
       - name: parent
         in: path
@@ -665,7 +665,7 @@ paths:
       operationId: getTemplatesByParentRevisionsById
       summary: Retrieve templates revisions
       tags:
-      - templates
+      - Templates
       parameters:
       - name: id
         in: path
@@ -719,7 +719,7 @@ paths:
       operationId: deleteTemplatesByParentRevisionsById
       summary: Delete templates revisions
       tags:
-      - templates
+      - Templates
       parameters:
       - name: id
         in: path
@@ -770,7 +770,7 @@ paths:
       operationId: listTemplatesLookup
       summary: List templates lookup
       tags:
-      - templates
+      - Templates
       parameters:
       - name: slug
         schema:
