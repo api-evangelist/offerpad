@@ -78,7 +78,7 @@ tags_raw:
   - Home Buying
   - Real-Estate
 created: '2026-07-26'
-modified: '2026-07-26'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: offerpad:offerpad-helix-api
@@ -138,6 +138,8 @@ apis:
   x-platform: wordpress
   x-platform-surface: rest
 common:
+  - url: https://www.offerpad.com/feed/
+    type: BlogRSS
   - type: AgenticAccess
     url: agentic-access/offerpad-agentic-access.yml
   - type: DomainSecurity
